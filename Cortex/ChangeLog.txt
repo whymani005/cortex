@@ -1,0 +1,17 @@
+
+## 03/17/2016
+-added note functionality for thought: xib files, save and get functionality
+
+
+## 03/16/2016
+-added latitude, longiude to thoughts
+-removed nsdata in attachments : instead storing just the link to document store
+
+
+## 03/14/2016
+-Removed all Parse dependency
+-Remove all sync stuff
+-Removed all username fields in entities
+-Bypass login, open directly to new thought VC
+-Removed quote feature on new thought VC
+-Removed badge framework for attachemnt barButton
