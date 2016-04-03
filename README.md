@@ -1,0 +1,20 @@
+What is Cortex?
+A informative tool to manage and organize thoughts and ideas sparked through out the day into custom categories.
+
+What problem does it solve?
+Never more than one tap away from a blank screen to write down thoughts immediately. We have so many thoughts buzzing through our minds all day, and its impossible to rely only on our memory or digital or physical post-it notes or emails, to keep track of ones that catch our attention. Store bite-sized thoughts that will be build upon later. Use Cortex to record and categorize those thoughts along with metadata such as mood, location and weather. Overtime, notice how your thoughts effect your mood and vice versa with beautiful charts and design.
+
+What use-case does it nail quickly?
+Something strikes you. You think of something you need to put down somewhere. You open Cortex, quickly type it down, and categorize it.  Next time you have a thought or idea related, it won’t be put down a loose, unrelated piece of paper, email draft or napkin. You can categorize it as before, and see how your thought builds upon each other. This will create a link between your thoughts and you can see how it progresses overtime.
+
+Convenience Factors?
+-NOT A NETWORK APPLICATION
+-No, it will not sync across the 3+ devices an average person uses these days. Use it on your go-to device, it will be your rock holding all your content to always come back to.
+-Yes, it doesn’t sync but will always work without precious wifi resources —unless maybe if you keep dropping your phone.
+-Option to share thoughts via different mediums
+-Ability to add attachments (sometimes a picture is worth more than a thousand words)
+	-pictures
+	-custom drawings
+	-annotate existing pictures
+	-quick notes on individual thoughts later : cause you can’t edit the thoughts you already had, but you can build on them, thoughts about thoughts if you will.
+-Graphs to give a quick look at overall trends
