@@ -391,6 +391,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     
     
     @IBAction func exportAllSearchResultsBtnPressed(sender: AnyObject) {
+        //generatePDFForAllSearchResultThoughts()
         //SVProgressHUD.show()
         var allObjectsToShare = [AnyObject]()
         
@@ -434,9 +435,51 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
             activityVC.excludedActivityTypes?.append(UIActivityTypeMessage)
             activityVC.excludedActivityTypes?.append(UIActivityTypePostToTwitter)
         }
-        print("ALL EXCLUDED ACTIVITIES: \(activityVC.excludedActivityTypes)")
+        //print("ALL EXCLUDED ACTIVITIES: \(activityVC.excludedActivityTypes)")
         
         self.presentViewController(activityVC, animated: true, completion: nil)
+    }
+    
+    func generatePDFForAllSearchResultThoughts() {
+        // save all table
+        var frame = self.tableView.frame;
+        frame.size.height = self.tableView.contentSize.height;
+        //self.tableView.frame = frame;
+        
+        UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, self.tableView.opaque, 0.0);
+        self.tableView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let saveImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        let imageData = UIImagePNGRepresentation(saveImage);
+        
+        let image = UIImage(data: imageData!)
+        let imageView = UIImageView(image: image)
+        createPDFFromImageView(imageView, fileName: "newSearchResults.pdf")
+    }
+    
+    func createPDFFromImageView(inputView: UIView, fileName: String) {
+        // Creates a mutable data object for updating with binary data, like a byte array
+        let pdfData = NSMutableData()
+        
+        // Points the pdf converter to the mutable data object and to the UIView to be converted
+        UIGraphicsBeginPDFContextToData(pdfData, inputView.bounds, nil);
+        UIGraphicsBeginPDFPage();
+        let pdfContext = UIGraphicsGetCurrentContext();
+        
+        // draws rect to the view and thus this is captured by UIGraphicsBeginPDFContextToData
+        inputView.layer.renderInContext(pdfContext!)
+        
+        // remove PDF rendering context
+        UIGraphicsEndPDFContext();
+        
+        // Retrieves the document directories from the iOS device
+        let documentDirectoryFilename = HelperUtils.fileInDocumentsDirectory(fileName)
+        print("PDf path fileName: \(documentDirectoryFilename)")
+        
+        // instructs the mutable data object to write its context to a file on disk
+        pdfData.writeToFile(documentDirectoryFilename, atomically: true)
+        //return pdfData
     }
     
     func setExportButtonBasedOnNumOfThoughts() {
