@@ -1,4 +1,25 @@
 
+## 04/02/2016
+-hide export bar button on search results VC when there is only one thought returned
+-more the pie chart legend to th left top corner.
+-fix issue that makes the app die with export to text is pressed
+
+
+## 03/31/2016
+-restructured/organized the whole project
+
+## 03/30/2016
+-Added 'Number of Entries' bar chart on Trends view
+-replaced simple activity indicator w the SVProgressHD
+-code to delete attachment images in the document store when thought is deleted
+-deleted the login/register/forgotPassword VC swift files
+
+
+## 03/27/2016
+-removed settings tab
+-removed login/register screens
+
+
 ## 03/17/2016
 -added note functionality for thought: xib files, save and get functionality
 

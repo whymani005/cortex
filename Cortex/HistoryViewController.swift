@@ -130,7 +130,7 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
             let message = "for \(criteria)"
             print(message)
             //ALERT
-            let titlePrompt = UIAlertController(title: "No Matches Found",
+            let titlePrompt = UIAlertController(title: "No Entries Found",
                 message: message,
                 preferredStyle: .Alert)
             titlePrompt.addAction(UIAlertAction(title: "Ok",
@@ -179,6 +179,8 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
             let cell = tableView.dequeueReusableCellWithIdentifier(InterfaceBuilderInfo.CellIdentifiers.historyCell, forIndexPath: indexPath)
             
             let row = indexPath.row
+            cell.textLabel?.adjustsFontSizeToFitWidth = true
+            cell.textLabel?.minimumScaleFactor=0.8
             cell.textLabel?.text = categories[row].category
             cell.textLabel?.textAlignment = NSTextAlignment.Center
             return cell

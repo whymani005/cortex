@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 
+
 class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewDelegate, CLLocationManagerDelegate, AttachmentDelegate {
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -46,7 +47,6 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         super.viewDidLoad()
         self.view.alpha = 1
         setupLocationManager()
-        setupKeyboardNotifications()
         
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -74,7 +74,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
 
         self.view.backgroundColor = UIColor.whiteColor()
         setSaveButtonBasedOnInput()
-        
+        setupKeyboardNotifications()
         changeIconBasedOnNumOfAttachments()
     }
     
@@ -270,41 +270,39 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
     //############################################### SAVE THOUGHT METHODS ####################################################
     
     @IBAction func saveThoughtButtonPressed(sender: AnyObject) {
-        let currUsername = NSUserDefaults.standardUserDefaults().stringForKey(UserInformation.USER_EMAIL)
-        self.view.backgroundColor = UIColor.darkGrayColor()
+        clearBarButtonItemOutlet.enabled = false
+        attachmentBarButtonItemOutlet.enabled = false
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
+        SVProgressHUD.show()
+        //self.view.alpha = 0.7
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-        let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        activityIndicatorView.center = self.view.center
-        activityIndicatorView.startAnimating()
-        self.view.alpha = 0.4
-        self.view.addSubview(activityIndicatorView)
         
         let thoughtGUID = NSUUID().UUIDString
         let selectedCategoryCDObject = self.dataRepo.getCDCategoryByGuid(self.selectedCategoryCDObjectGuid)
-        
 
         //Create the thought with content, guid
         if(StringUtils.isBlank(myCurrentLocationString)) {
             myCurrentLocationString = "Not Available"
         }
         
-        self.saveNewThoughtWithCategoryInBackground(selectedCategoryCDObject!, newThoughtGuid: thoughtGUID, thoughtTextString: self.thoughtContentTextView.text)
+        self.saveNewThoughtWithCategory(selectedCategoryCDObject!, newThoughtGuid: thoughtGUID, thoughtTextString: self.thoughtContentTextView.text)
         
         if(selectedCategoryCDObject != nil) {
             selectedCategoryCDObject!.setValue(NSDate(), forKey: EntityInfo.Category.lastModified_CD_ONLY)
             self.dataRepo.save()
-            print("Updated CD category with guid: \(selectedCategoryCDObject!.guid) for user: \(currUsername) to ALREADY_SYNCED")
+            print("Updated CD category with guid: \(selectedCategoryCDObject!.guid) to ALREADY_SYNCED")
         }
- 
-        self.view.alpha = 1.0
-        self.view.backgroundColor = UIColor.whiteColor()
+        
+        //self.view.alpha = 1.0
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         //show success alert?
         clearThoughtScreen()
         clearBarButtonItemOutlet.enabled = true
+        attachmentBarButtonItemOutlet.enabled = true
+        SVProgressHUD.dismiss()
     }
     
-    func saveNewThoughtWithCategoryInBackground(cdCategoryObject: Category, newThoughtGuid: String, var thoughtTextString: String) {
+    func saveNewThoughtWithCategory(cdCategoryObject: Category, newThoughtGuid: String, var thoughtTextString: String) {
         thoughtTextString = thoughtTextString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let createDate = NSDate()
         
@@ -313,7 +311,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         //MAIN THREAD - SAVE THOUGHT TO CD
         let newCDThought = Thought.createNewThoughtInMOC(self.managedObjectContext!, category: cdCategoryObject, categoryString: cdCategoryObject.category, mood: self.selectedMood, location: self.myCurrentLocationString, thoughtText: thoughtTextString, guid: newThoughtGuid, createdAt: createDate)
         self.dataRepo.save()
-        saveSearchWordsForThought(thoughtTextString, thought: newCDThought)
+        //saveSearchWordsForThought(thoughtTextString, thought: newCDThought)
         print("Created NEW NEEDS_TO_BE_SYNCED CD thought with guid: \(newThoughtGuid)")
         
         //MAIN THREAD - SAVE ATT TO CD
@@ -325,7 +323,8 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
                 // Define image name
                 let imageName = attachmentGUID+".png"
                 let imagePath = HelperUtils.fileInDocumentsDirectory(imageName)
-                let success = saveImage(attachment, path: imagePath)
+                //let attOrientation = attachment.imageOrientation.rawValue
+                let success = saveImage(attachment.correctlyOrientedImage(), path: imagePath)
                 if(success) {
                     _ = Attachment.createNewAttachmentInMOC(self.managedObjectContext!, name: imageName, thought: newCDThought, guid: attachmentGUID)
                     self.dataRepo.save()

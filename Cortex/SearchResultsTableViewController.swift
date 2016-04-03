@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
-class SearchResultsTableViewController: UITableViewController {
+class SearchResultsTableViewController: UITableViewController, UITextViewDelegate {
     
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    @IBOutlet weak var exportBarButton: UIBarButtonItem!
     
     var returnedSearchResults = [Thought]()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -23,15 +24,16 @@ class SearchResultsTableViewController: UITableViewController {
     var holderView : UIView!
     var customView : AddThoughtNoteView!
     var previousConstant : CGFloat = 0.0
+    var keyboardHeightRightNow : CGFloat = -1.0
     var thoughtIndexToAddNote : Int = -1
+    var addNoteCustomViewOnDisplay = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.dateStyle = NSDateFormatterStyle.MediumStyle
         formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        
         setupKeyboardNotifications()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -43,7 +45,15 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        //setupKeyboardNotifications()
         tableView.reloadData()
+        if(self.returnedSearchResults.count < 2) {
+            navigationItem.rightBarButtonItems = []
+            exportBarButton.enabled = false
+        } else {
+            navigationItem.rightBarButtonItems = [exportBarButton]
+            exportBarButton.enabled = true
+        }
     }
 
     @IBAction func cancelButtonPressed(sender: AnyObject) {
@@ -159,6 +169,7 @@ class SearchResultsTableViewController: UITableViewController {
                                                 UIActivityTypePostToTencentWeibo]
             //
             self.presentViewController(activityVC, animated: true, completion: nil)
+            self.tableView.setEditing(false, animated: true)
 
         }
         share.backgroundColor = UIColor.darkGrayColor() //(rgba: "#F6A242")
@@ -236,20 +247,26 @@ class SearchResultsTableViewController: UITableViewController {
 
     
     func deleteThought(thought: Thought) {
-        print("Set delete flag to 1 and remove from CD if parse flag was also updated for guid: \(thought.guid)")
-        /*thought.setValue(1, forKey: EntityInfo.Thought.isThoughtDeleted)
-        thought.setValue(NSDate(), forKey: EntityInfo.Thought.lastModified_CD_ONLY)
-        self.dataRepo.save()*/
-        
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
+        SVProgressHUD.show()
+        if(thought.thoughtAttachments != nil && thought.thoughtAttachments?.count > 0) {
+            for att in thought.thoughtAttachments! {
+                HelperUtils.deleteFileAtPath(att.name)
+            }
+        }
         self.managedObjectContext?.deleteObject(thought)
         self.dataRepo.save()
+        SVProgressHUD.dismiss()
+        self.tableView.layoutIfNeeded()
     }
     
     //############################# ADD NOTE HELPERS #################################
     
     func displayNoteEditorXib(choosenThoughtSection : Int, height: CGFloat) {
         //FYI - selection of other cells is disabled at this point. User can just scroll the table
+        addNoteCustomViewOnDisplay = true
         cancelBarButton.enabled = false
+        exportBarButton.enabled = false
         
         thoughtIndexToAddNote = choosenThoughtSection
         
@@ -275,15 +292,33 @@ class SearchResultsTableViewController: UITableViewController {
         
         self.customView.cancelButton.addTarget(self, action: "cancelNoteButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
         self.customView.saveButton.addTarget(self, action: "saveNoteButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.customView.textFieldView.delegate = self
+        
         self.view.addSubview(self.customView!)
+        //self.customView.endEditing(false)
+        self.customView.textFieldView.becomeFirstResponder()
+        self.tableView.setEditing(false, animated: true) //closes the cell that was swiped left.
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        self.customView.textFieldView.resignFirstResponder()
+    }
+    
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        self.customView.textFieldView.resignFirstResponder()
+        return true
     }
     
     func cancelNoteButtonTapped(sender:UIButton!) {
-        self.customView.textFieldView.resignFirstResponder()
+        self.customView.textFieldView.endEditing(true)
+        self.holderView.endEditing(true)
+        self.view.endEditing(true)
         self.customView.removeFromSuperview()
         self.holderView.removeFromSuperview()
         thoughtIndexToAddNote = -1
         cancelBarButton.enabled = true
+        setExportButtonBasedOnNumOfThoughts()
+        addNoteCustomViewOnDisplay = false
     }
     
     func saveNoteButtonTapped(sender:UIButton!) {
@@ -299,6 +334,10 @@ class SearchResultsTableViewController: UITableViewController {
         self.holderView.removeFromSuperview()
         thoughtIndexToAddNote = -1
         cancelBarButton.enabled = true
+        setExportButtonBasedOnNumOfThoughts()
+        addNoteCustomViewOnDisplay = false
+        self.tableView.layoutIfNeeded()
+        self.tableView.layoutSubviews()
     }
     
     //############################# KEYBOARD HELPERS #########################################
@@ -312,12 +351,14 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     func moveTextViewForKeyboard(notification: NSNotification, up: Bool) {
-        if (up == true) {
+        if (up == true && addNoteCustomViewOnDisplay) {
             let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size
             let keyboardFrame: CGRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
 
             let keyboardHeight = keyboardSize?.height
             print("FULL FRAME :: \(self.view.frame) = height: \(self.view.frame.height)")
+            print("UI MAIN FRAME SCREEN :: = height: \(UIScreen.mainScreen().bounds.height)")
+            //print("NAVIG BAR :: = height: \(STATUS_BAR_HEIGHT)")
             print("KEYBOARD FRAME :: \(keyboardFrame) = height: \(keyboardFrame.height)")
             print("CUSTOM VIEW FRAME :: \(self.customView.frame) = height: \(self.customView.frame.height)")
             
@@ -332,31 +373,77 @@ class SearchResultsTableViewController: UITableViewController {
                 //20 is usually the status bar height, so 20 +5 gave me 319
                 let height = CGFloat(self.view.frame.height - 75 - keyboardHeight!)
                 print("----final height: \(height)")
+                self.customView.endEditing(true)
                 self.customView.removeFromSuperview()
                 self.holderView.removeFromSuperview()
                 displayNoteEditorXib(thoughtIndexToAddNote, height: height)
-                
-                /*previousConstant = self.customView.textFieldBottomConstraint.constant
-                print("previousConstant: \(previousConstant)")
-                self.customView.textFieldBottomConstraint.constant = keyboardHeight! - 125
-                //print("after: \(self.textViewBottmConstraint.constant)")*/
-                /*UIView.animateWithDuration(0.2) { () -> Void in
-                    let screenWidth : CGFloat = self.view.frame.size.width
-                    let customViewWidth : CGFloat = screenWidth - 30
-                    let customViewY : CGFloat = 0 + 5
-                    let height = CGFloat(self.customView.frame.height - keyboardHeight!)
-                    self.customView = AddThoughtNoteView(frame: CGRectMake((screenWidth-customViewWidth)/2, customViewY, customViewWidth, height))
-                    self.customView.layer.borderWidth = 0.8
-                    self.customView.layer.borderColor = UIColor.lightGrayColor().CGColor
-                    self.customView.layer.cornerRadius = 10
-                    self.customView.clipsToBounds = true
-                    self.customView.layoutIfNeeded()
-                }*/
             }
         } else {
-            // Keyboard is going away (down) - restore original frame
-            self.self.customView.textFieldBottomConstraint.constant = previousConstant
-            self.customView.layoutIfNeeded()
+            if(addNoteCustomViewOnDisplay) {
+                // Keyboard is going away (down) - restore original frame
+                self.self.customView.textFieldBottomConstraint.constant = previousConstant
+                self.customView.layoutIfNeeded()
+            }
+        }
+    }
+    
+    //############################# EXPORT ALL SEARCH THOUGHTS HELPERS #########################################
+    
+    
+    @IBAction func exportAllSearchResultsBtnPressed(sender: AnyObject) {
+        //SVProgressHUD.show()
+        var allObjectsToShare = [AnyObject]()
+        
+        for thought in self.returnedSearchResults  {
+            var thisThoughtContent = thought.thoughtContent
+            if(!StringUtils.isBlank(thought.note)) {
+                thisThoughtContent?.appendContentsOf("\nNote: ")
+                thisThoughtContent?.appendContentsOf(thought.note!)
+            }
+            print("working on: \(thisThoughtContent)")
+            allObjectsToShare.append(thisThoughtContent!)
+            if(thought.thoughtAttachments?.count > 0) {
+                self.getThoughtAttachmentImages(thought.thoughtAttachments)
+                allObjectsToShare.append(attachmentImages)
+            }
+        }
+        
+        print("all objects: \(allObjectsToShare.count)")
+
+        let activityVC = UIActivityViewController(activityItems: allObjectsToShare, applicationActivities: nil)
+        activityVC.navigationController?.navigationBar.backgroundColor = UIColor(rgba: "#3CB3B5")
+        activityVC.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        activityVC.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        activityVC.view.tintColor = UIColor.redColor() ///this only changes the color of CANCEL button
+        /*if #available(iOS 9.0, *) {
+        UINavigationBar.appearanceWhenContainedInInstancesOfClasses([SearchResultsTableViewController.self]).backgroundColor = UIColor.greenColor()
+        } else {
+        // Fallback on earlier versions
+        }*/
+        //New Excluded Activities
+        activityVC.excludedActivityTypes = [UIActivityTypeAddToReadingList,
+            UIActivityTypePostToWeibo,
+            UIActivityTypePrint,
+            UIActivityTypeAirDrop,
+            UIActivityTypeAssignToContact,
+            UIActivityTypePostToVimeo,
+            UIActivityTypePostToTencentWeibo]
+        //
+        
+        if(self.returnedSearchResults.count > 1) {
+            activityVC.excludedActivityTypes?.append(UIActivityTypeMessage)
+            activityVC.excludedActivityTypes?.append(UIActivityTypePostToTwitter)
+        }
+        print("ALL EXCLUDED ACTIVITIES: \(activityVC.excludedActivityTypes)")
+        
+        self.presentViewController(activityVC, animated: true, completion: nil)
+    }
+    
+    func setExportButtonBasedOnNumOfThoughts() {
+        if(self.returnedSearchResults.count < 2) {
+            exportBarButton.enabled = false
+        } else {
+            exportBarButton.enabled = true
         }
     }
     
