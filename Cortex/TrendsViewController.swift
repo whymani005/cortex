@@ -356,6 +356,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.timeZone = NSTimeZone(abbreviation: "UTC");
         let defaultDate = dataRepo.getFirstThoughtCreatedAtDate()
+        print("FIRST THOUGHT DATE: \(defaultDate)")
         let numOfDaysSinceFirstThought = DateUtils.daysBetweenDates(NSDate(), endDate: defaultDate)
         
         let dateStr = trendsRepo.getDateStringArrayForLastNDaysFromGivenDate(NSDate(), numOfDays: -numOfDaysSinceFirstThought)
@@ -379,6 +380,10 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         barChartView.leftAxis.enabled = true
         barChartView.xAxis.drawGridLinesEnabled = false
         barChartView.xAxis.drawAxisLineEnabled = false
+        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.generatesDecimalNumbers = false
+        barChartView.leftAxis.valueFormatter = numberFormatter
         
         barChartView.drawGridBackgroundEnabled = true
         barChartView.legend.form = ChartLegend.ChartLegendForm.Line
