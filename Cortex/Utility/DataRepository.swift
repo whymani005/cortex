@@ -157,7 +157,7 @@ class DataRepository {
     
     func getFirstThoughtCreatedAtDate() -> NSDate {
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
-        dateStringFormatter.timeZone = NSTimeZone(abbreviation: "UTC");
+        dateStringFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
         
         let fetchRequest = NSFetchRequest(entityName: EntityInfo.Thought.tableName)
         fetchRequest.fetchLimit = 1
