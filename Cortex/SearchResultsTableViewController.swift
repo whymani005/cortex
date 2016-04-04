@@ -266,15 +266,14 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         //FYI - selection of other cells is disabled at this point. User can just scroll the table
         addNoteCustomViewOnDisplay = true
         cancelBarButton.enabled = false
-        exportBarButton.enabled = false
-        
+        setExportButtonBasedOnNumOfThoughts()
         thoughtIndexToAddNote = choosenThoughtSection
         
         holderView = UIView(frame: self.view.frame)
         holderView.backgroundColor = UIColor.grayColor()
         holderView.alpha = 0.6
         self.view.addSubview(holderView)
-        
+
         let screenWidth : CGFloat = self.view.frame.size.width
         let customViewWidth : CGFloat = screenWidth - 30
         let customViewY : CGFloat = 0 + 5
@@ -284,7 +283,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         self.customView.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.customView.layer.cornerRadius = 10
         self.customView.clipsToBounds = true
-        
+
         let thought = self.returnedSearchResults[thoughtIndexToAddNote]
         if(!StringUtils.isBlank(thought.note)) {
             self.customView.textFieldView.text = thought.note
@@ -295,9 +294,12 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         self.customView.textFieldView.delegate = self
         
         self.view.addSubview(self.customView!)
+        print("one")
         //self.customView.endEditing(false)
         self.customView.textFieldView.becomeFirstResponder()
+        print("two")
         self.tableView.setEditing(false, animated: true) //closes the cell that was swiped left.
+        print("three")
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -484,7 +486,9 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     
     func setExportButtonBasedOnNumOfThoughts() {
         if(self.returnedSearchResults.count < 2) {
-            exportBarButton.enabled = false
+            if(navigationItem.rightBarButtonItems != nil && navigationItem.rightBarButtonItems?.count > 0) {
+                exportBarButton.enabled = false
+            }
         } else {
             exportBarButton.enabled = true
         }
