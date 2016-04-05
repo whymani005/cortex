@@ -1,4 +1,9 @@
 
+
+## 04/03/2016
+-NPE issue on export button on search results screen
+
+
 ## 04/02/2016
 -hide export bar button on search results VC when there is only one thought returned
 -more the pie chart legend to th left top corner.
@@ -7,6 +12,7 @@
 
 ## 03/31/2016
 -restructured/organized the whole project
+
 
 ## 03/30/2016
 -Added 'Number of Entries' bar chart on Trends view
