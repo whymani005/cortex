@@ -355,26 +355,23 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     func moveTextViewForKeyboard(notification: NSNotification, up: Bool) {
         if (up == true && addNoteCustomViewOnDisplay) {
             let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size
-            let keyboardFrame: CGRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+            //let keyboardFrame: CGRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
 
             let keyboardHeight = keyboardSize?.height
-            print("FULL FRAME :: \(self.view.frame) = height: \(self.view.frame.height)")
+            /*print("FULL FRAME :: \(self.view.frame) = height: \(self.view.frame.height)")
             print("UI MAIN FRAME SCREEN :: = height: \(UIScreen.mainScreen().bounds.height)")
             //print("NAVIG BAR :: = height: \(STATUS_BAR_HEIGHT)")
             print("KEYBOARD FRAME :: \(keyboardFrame) = height: \(keyboardFrame.height)")
-            print("CUSTOM VIEW FRAME :: \(self.customView.frame) = height: \(self.customView.frame.height)")
+            print("CUSTOM VIEW FRAME :: \(self.customView.frame) = height: \(self.customView.frame.height)")*/
             
             
             //print("++ frameHeight: \(self.view.frame.height) -- keyboardHeight: \(keyboardHeight) -- xib height: \(self.customView.frame.height)")
-            
             //self.customView.frame.origin.y = -150 //no luck, moves the whole frame up, but I need just the height to shrink!
             
             if(self.customView.frame.height + keyboardHeight! + 5 >= self.view.frame.height) {
-                print("YESSSS")
-                
                 //20 is usually the status bar height, so 20 +5 gave me 319
                 let height = CGFloat(self.view.frame.height - 75 - keyboardHeight!)
-                print("----final height: \(height)")
+                print("--final height for addNote XIB: \(height)")
                 self.customView.endEditing(true)
                 self.customView.removeFromSuperview()
                 self.holderView.removeFromSuperview()

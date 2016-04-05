@@ -42,7 +42,7 @@ class CortexTabBarController: UITabBarController {
                         finalImage = finalImage0
                     }
                 }
-                item.selectedImage = finalImage.imageWithColor(UIColor(rgba: "#ee9977")).imageWithRenderingMode(.AlwaysOriginal)
+                item.selectedImage = finalImage.imageWithColor(UIColor(rgba: "#7F8C8D")).imageWithRenderingMode(.AlwaysOriginal) //#ee9977
             }
             i++
         }
@@ -55,26 +55,4 @@ class CortexTabBarController: UITabBarController {
     
 }
 
-// Add anywhere in your app
-extension UIImage {
-    func imageWithColor(tintColor: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        
-        let context = UIGraphicsGetCurrentContext()
-        CGContextTranslateCTM(context, 0, self.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0);
-        CGContextSetBlendMode(context, CGBlendMode.Normal)
-        
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
-        CGContextClipToMask(context, rect, self.CGImage)
-        tintColor.setFill()
-        CGContextFillRect(context, rect)
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-    
-}
 
