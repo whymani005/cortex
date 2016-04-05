@@ -10,7 +10,7 @@ A informative tool to manage and organize thoughts and ideas sparked through out
 
 <p align="center">
   <img src="/screenshots/attachmentOptions.PNG" width="350"/>
-   <img src="/screenshots/doodleSettings.PNG" width="350"/>
+  <img src="/screenshots/doodleSettings.PNG" width="350"/>
 </p>
 
 <p align="center">
