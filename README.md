@@ -3,6 +3,27 @@
 **What is Cortex?**
 A informative tool to manage and organize thoughts and ideas sparked through out the day into custom categories.
 
+<p align="center">
+  <img src="/screenshots/enterThought.PNG" width="350"/>
+  <img src="/screenshots/allCategories.PNG" width="350"/>
+</p>
+
+<p align="center">
+  <img src="/screenshots/attachmentOptions.PNG" width="350"/>
+  <img src="/screenshots/doodleSettings.PNG" width="350"/>
+</p>
+
+<p align="center">
+  <img src="/screenshots/historyScreen.PNG" width="350"/>
+  <img src="/screenshots/searchResults.PNG" width="350"/>
+</p>
+
+<p align="center">
+  <img src="/screenshots/moodChart.PNG" width="233"/>
+  <img src="/screenshots/categoryChart.PNG" width="233"/>
+  <img src="/screenshots/numOfThoughtsChart.PNG" width="233"/>
+</p>
+
 **What problem does it solve?**
 Never more than one tap away from a blank screen to write down thoughts immediately. We have so many thoughts buzzing through our minds all day, and its impossible to rely only on our memory or digital or physical post-it notes or emails, to keep track of ones that catch our attention. Store bite-sized thoughts that will be build upon later. Use Cortex to record and categorize those thoughts along with metadata such as mood, location and weather. Overtime, notice how your thoughts effect your mood and vice versa with beautiful charts and design.
 
