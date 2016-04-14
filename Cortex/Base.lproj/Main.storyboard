@@ -70,6 +70,7 @@
                                     <segment title="Location"/>
                                     <segment title="Mood"/>
                                 </segments>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="segmentedControlPressed:" destination="y2E-kV-sRG" eventType="valueChanged" id="yOy-fq-ZK3"/>
                                 </connections>
@@ -1689,6 +1690,7 @@
                                     <segment title="3-Mon"/>
                                     <segment title="All"/>
                                 </segments>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="segmentedControlPressed:" destination="mXq-Oj-lhW" eventType="valueChanged" id="QJX-fF-sj1"/>
                                 </connections>

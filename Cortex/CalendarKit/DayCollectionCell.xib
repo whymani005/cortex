@@ -15,7 +15,7 @@
                 <subviews>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AxY-Ao-My1">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.83529411764705885" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="PPu-8c-Nv9"/>
                             <constraint firstAttribute="height" constant="50" id="aGP-pF-LGD"/>
@@ -30,7 +30,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="0.96368634259259256" green="0.96368634259259256" blue="0.96368634259259256" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="mRF-av-J6F" secondAttribute="bottom" id="4C7-D1-Xfb"/>
                 <constraint firstAttribute="centerX" secondItem="AxY-Ao-My1" secondAttribute="centerX" id="8gg-E6-NFb"/>
