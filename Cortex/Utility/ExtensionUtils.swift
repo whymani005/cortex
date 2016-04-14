@@ -72,6 +72,13 @@ extension UIImage {
     }
 }
 
+extension UITableView {
+    func scrollToTop(animated: Bool) {
+        setContentOffset(CGPointZero, animated: animated)
+    }
+}
+
+
 
 
 

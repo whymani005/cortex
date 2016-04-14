@@ -294,10 +294,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         self.customView.textFieldView.delegate = self
         
         self.view.addSubview(self.customView!)
-        print("one")
-        //self.customView.endEditing(false)
         self.customView.textFieldView.becomeFirstResponder()
-        print("two")
         self.tableView.setEditing(false, animated: true) //closes the cell that was swiped left.
         print("three")
     }

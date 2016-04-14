@@ -48,6 +48,8 @@ class ShowCategoriesTableViewController: UITableViewController {
         categories = dataRepo.getAllCategories()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "categoryInputTextFieldChanged:", name: UITextFieldTextDidChangeNotification, object: nil)
+        
+        //self.navigationController!.navigationBar.translucent = NO;
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,7 +82,10 @@ class ShowCategoriesTableViewController: UITableViewController {
     
     @IBAction func addNewCategoryButtonPressed(sender: AnyObject) {
         //FYI - selection of other cells is disabled at this point. User can just scroll the table
+        tableView.scrollEnabled = false
         addCategoryButton.enabled = false
+        //Scroll to the top
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
 
         holderView = UIView(frame: self.view.frame)
         holderView.backgroundColor = UIColor.grayColor()
@@ -89,8 +94,17 @@ class ShowCategoriesTableViewController: UITableViewController {
         
         let screenWidth : CGFloat = self.view.frame.size.width
         let customViewWidth : CGFloat = screenWidth - 30
-        //let navigationBarY = self.navigationController?.navigationBar.frame.origin.y
-        //let navigationBarHeight = self.navigationController?.navigationBar.frame.size.height
+        
+        
+        /*let navigationBarY = self.navigationController?.navigationBar.frame.origin.y
+        let navigationBarHeight = self.navigationController?.navigationBar.frame.size.height
+        let y = tableView.contentOffset.y
+        print("==========navigationBarY : \(navigationBarY)")
+        print("==========navigationBarHeight : \(navigationBarHeight)")
+        print("==========OFFSET : \(y)")*/
+
+        
+        //TODO - change customViewY so it's not always stuck to the top if the table view has many contents
         let customViewY : CGFloat = 0 + 5 //navigationBarY! + navigationBarHeight! + 5
         self.customView =  AddCategoryAlertView(frame: CGRectMake((screenWidth-customViewWidth)/2, customViewY, customViewWidth, 125))
         self.customView.layer.borderWidth = 0.8
@@ -109,6 +123,7 @@ class ShowCategoriesTableViewController: UITableViewController {
         self.customView.removeFromSuperview()
         self.holderView.removeFromSuperview()
         addCategoryButton.enabled = true
+        tableView.scrollEnabled = true
     }
     
     func saveButtonTapped(sender:UIButton!) {
@@ -132,6 +147,7 @@ class ShowCategoriesTableViewController: UITableViewController {
         self.customView.removeFromSuperview()
         self.holderView.removeFromSuperview()
         addCategoryButton.enabled = true
+        tableView.scrollEnabled = true
     }
     
 
