@@ -211,14 +211,14 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "My Mood")
         lineChartDataSet.circleRadius = CGFloat(6.0)
    
-        lineChartDataSet.setMainCircleColor(UIColor(rgba: "#F6A242"))
+        lineChartDataSet.setMainCircleColor(UIColor(rgba: "#eed541")) //F6A242
         /*for i in 0..<noMoodIndexes.count {
             let indexValue : Int = noMoodIndexes[i]
             lineChartDataSet.setCircleColorAtIndex(UIColor.lightGrayColor(), index: indexValue)
         }*/
         
         //lineChartDataSet.drawCircleHoleEnabled = false
-        lineChartDataSet.setColor(UIColor(rgba: "#F6A242"))
+        lineChartDataSet.setColor(UIColor(rgba: "#eed541")) //F6A242
         let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
        
         lineChartView.rightAxis.enabled = false
@@ -374,7 +374,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "# Of Entries")
         let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
-        chartDataSet.colors = [(UIColor(rgba: "#F6A242"))]
+        chartDataSet.colors = [(UIColor(rgba: "#eed541"))] //f6a242
         
         barChartView.rightAxis.enabled = false
         barChartView.leftAxis.enabled = true
