@@ -161,7 +161,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         self.selectedCategoryCDObjectText = categorySelectedText
         
         if(self.selectedCategory == false) {
-            categoryButton.layer.borderColor = UIColor(rgba: "#7f8c8d").CGColor
+            categoryButton.layer.borderColor = UIColor.darkGrayColor().CGColor //UIColor(rgba: "#7f8c8d").CGColor
             categoryButton.layer.backgroundColor = UIColor.whiteColor().CGColor
             categoryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         }
@@ -193,7 +193,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         selectedCategoryCDObjectGuid = ""
         selectedCategoryCDObjectText = ""
         categoryButton.layer.borderColor = UIColor.whiteColor().CGColor
-        categoryButton.layer.backgroundColor = UIColor(rgba: "#7f8c8d").CGColor
+        categoryButton.layer.backgroundColor = UIColor.darkGrayColor().CGColor //UIColor(rgba: "#7f8c8d").CGColor
         categoryButton.setTitleColor(UIColor(rgba: "#EDEDED"), forState: UIControlState.Normal)
         categoryButton.setTitle("Select Category", forState: .Normal)
         

@@ -88,7 +88,6 @@
 		C8F4833C1CAE0FD400988365 /* WeekHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F4833A1CAE0FD400988365 /* WeekHeaderView.swift */; };
 		C8F4833D1CAE0FD400988365 /* WeekHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8F4833B1CAE0FD400988365 /* WeekHeaderView.xib */; };
 		C8F483401CB03BA700988365 /* MyStringItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F4833F1CB03BA700988365 /* MyStringItemSource.swift */; };
-		C8F9ECA91BAE0B1300A5C889 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9ECA81BAE0B1300A5C889 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,7 +227,6 @@
 		C8F4833A1CAE0FD400988365 /* WeekHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekHeaderView.swift; path = CalendarKit/WeekHeaderView.swift; sourceTree = "<group>"; };
 		C8F4833B1CAE0FD400988365 /* WeekHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WeekHeaderView.xib; path = CalendarKit/WeekHeaderView.xib; sourceTree = "<group>"; };
 		C8F4833F1CB03BA700988365 /* MyStringItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStringItemSource.swift; sourceTree = "<group>"; };
-		C8F9ECA81BAE0B1300A5C889 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,7 +414,6 @@
 				C85222B51BC35D4C0041485F /* SearchResultsTableViewController.swift */,
 				C8014B3D1C13B72D00F00194 /* SearchedThoughtAttachmentsViewController.swift */,
 				C85223BA1BC770B90041485F /* TrendsViewController.swift */,
-				C8F9ECA81BAE0B1300A5C889 /* SettingsViewController.swift */,
 				C84787DF1BA900E7007F6D50 /* Main.storyboard */,
 				C84787E21BA900E7007F6D50 /* Images.xcassets */,
 				C84787E41BA900E7007F6D50 /* LaunchScreen.xib */,
@@ -622,7 +619,6 @@
 			files = (
 				C80969CA1CAD97BF00CDD78E /* SearchResultTableViewCell.swift in Sources */,
 				C80969981CAD8A7200CDD78E /* ExtensionUtils.swift in Sources */,
-				C8F9ECA91BAE0B1300A5C889 /* SettingsViewController.swift in Sources */,
 				C80969DB1CAD9ECA00CDD78E /* Search+CoreDataProperties.swift in Sources */,
 				C80969C81CAD97BF00CDD78E /* SearchByKeyword.swift in Sources */,
 				C80969D61CAD9ECA00CDD78E /* Attachment.swift in Sources */,

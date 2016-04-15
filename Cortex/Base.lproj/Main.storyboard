@@ -719,7 +719,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cR0-oD-dKA">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.49803921568627452" green="0.5490196078431373" blue="0.55294117647058827" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="ba9-Jm-kYn"/>
                                 </constraints>
@@ -861,6 +861,7 @@
                                             <constraint firstAttribute="width" secondItem="2dV-CW-lFX" secondAttribute="height" multiplier="1:1" id="cmx-0b-aGn"/>
                                             <constraint firstAttribute="width" constant="30" id="wpF-sh-Ejz"/>
                                         </constraints>
+                                        <color key="tintColor" red="0.93333333333333335" green="0.83529411764705885" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Button" image="neutral"/>
                                         <variation key="default">
                                             <mask key="constraints">
