@@ -137,7 +137,8 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         }
         delete.backgroundColor = UIColor(rgba: "#ef3340")
         
-        let share = UITableViewRowAction(style: .Default, title: "\u{282A}\nShare") { action, index in
+        //u{282A}
+        let share = UITableViewRowAction(style: .Default, title: "Share") { action, index in
             self.tableView(tableView, commitEditingStyle: UITableViewCellEditingStyle.None, forRowAtIndexPath: indexPath)
             
             var allObjectsToShare = [AnyObject]()
@@ -178,23 +179,23 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         if(!StringUtils.isBlank(returnedSearchResults[indexPath.section].note)) {
             noteAction = "Edit"
         }
-        let addNote = UITableViewRowAction(style: .Normal, title: "+\n"+noteAction+"\nNote") { action, index in
+        let addNote = UITableViewRowAction(style: .Normal, title: noteAction+"\nNote") { action, index in
             print("addNOTE button tapped")
             self.tableView(tableView, commitEditingStyle: UITableViewCellEditingStyle.None, forRowAtIndexPath: indexPath)
             self.displayNoteEditorXib(indexPath.section, height: CGFloat(350))
         }
-        addNote.backgroundColor = UIColor(rgba: "#F6A242")
+        addNote.backgroundColor = UIColor.lightGrayColor()//(rgba: "#F6A242")
         
         let thoughtAttachments = returnedSearchResults[indexPath.section].thoughtAttachments
         if(thoughtAttachments != nil && thoughtAttachments?.count > 0) {
-            // "\u{263C}\n View\n Attachments"
-            let attc = UITableViewRowAction(style: .Normal, title: "\u{229B}\nView\nImages") { action, index in
+            // "\u{263C}\n View\n Attachments" , u{229B}
+            let attc = UITableViewRowAction(style: .Normal, title: "View\nImages") { action, index in
                 print("view attachments button tapped")
                 self.tableView(tableView, commitEditingStyle: UITableViewCellEditingStyle.None, forRowAtIndexPath: indexPath)
                 self.getThoughtAttachmentImages(thoughtAttachments)
                 self.performSegueWithIdentifier(InterfaceBuilderInfo.SeguePath.showSearchedThoughtAttachments, sender: self)
             }
-            attc.backgroundColor = UIColor.lightGrayColor() //(rgba: "#DEBD3E") //(rgba: "#00ab84")
+            attc.backgroundColor = UIColor(rgba: "#7b7d7b") //(rgba: "#00ab84")
             return [delete, share, attc, addNote]
         }
         
@@ -263,7 +264,10 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     //############################# ADD NOTE HELPERS #################################
     
     func displayNoteEditorXib(choosenThoughtSection : Int, height: CGFloat) {
-        //FYI - selection of other cells is disabled at this point. User can just scroll the table
+        //Scroll to the top
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+        tableView.scrollEnabled = false
+        
         addNoteCustomViewOnDisplay = true
         cancelBarButton.enabled = false
         setExportButtonBasedOnNumOfThoughts()
@@ -318,6 +322,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         cancelBarButton.enabled = true
         setExportButtonBasedOnNumOfThoughts()
         addNoteCustomViewOnDisplay = false
+        tableView.scrollEnabled = true
     }
     
     func saveNoteButtonTapped(sender:UIButton!) {
@@ -335,6 +340,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         cancelBarButton.enabled = true
         setExportButtonBasedOnNumOfThoughts()
         addNoteCustomViewOnDisplay = false
+        tableView.scrollEnabled = true
         self.tableView.layoutIfNeeded()
         self.tableView.layoutSubviews()
     }
@@ -411,7 +417,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         activityVC.navigationController?.navigationBar.backgroundColor = UIColor(rgba: "#3CB3B5")
         activityVC.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         activityVC.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.darkGrayColor()]
-        activityVC.view.tintColor = UIColor.redColor() ///this only changes the color of CANCEL button
+        activityVC.view.tintColor = UIColor.redColor() //this only changes the color of CANCEL button
         /*if #available(iOS 9.0, *) {
         UINavigationBar.appearanceWhenContainedInInstancesOfClasses([SearchResultsTableViewController.self]).backgroundColor = UIColor.greenColor()
         } else {
