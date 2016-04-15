@@ -5,7 +5,7 @@ A informative tool to manage and organize thoughts and ideas sparked through out
 
 <p align="center">
   <img src="/screenshots/enterThought.PNG" width="350"/>
-  <img src="/screenshots/allCategories.png" width="350"/>
+  <img src="/screenshots/allCategories.PNG" width="350"/>
 </p>
 
 <p align="center">
@@ -14,8 +14,9 @@ A informative tool to manage and organize thoughts and ideas sparked through out
 </p>
 
 <p align="center">
-  <img src="/screenshots/historyScreen.PNG" width="350"/>
-  <img src="/screenshots/searchResults.PNG" width="350"/>
+  <img src="/screenshots/historyScreen.PNG" width="233"/>
+  <img src="/screenshots/searchResults.PNG" width="233"/>
+  <img src="/screenshots/addNote.PNG" width="233"/>
 </p>
 
 <p align="center">
