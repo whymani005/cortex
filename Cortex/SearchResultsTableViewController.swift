@@ -180,7 +180,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
             noteAction = "Edit"
         }
         let addNote = UITableViewRowAction(style: .Normal, title: noteAction+"\nNote") { action, index in
-            print("addNOTE button tapped")
+            //print("addNOTE button tapped")
             self.tableView(tableView, commitEditingStyle: UITableViewCellEditingStyle.None, forRowAtIndexPath: indexPath)
             self.displayNoteEditorXib(indexPath.section, height: CGFloat(350))
         }
@@ -190,7 +190,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         if(thoughtAttachments != nil && thoughtAttachments?.count > 0) {
             // "\u{263C}\n View\n Attachments" , u{229B}
             let attc = UITableViewRowAction(style: .Normal, title: "View\nImages") { action, index in
-                print("view attachments button tapped")
+                //print("view attachments button tapped")
                 self.tableView(tableView, commitEditingStyle: UITableViewCellEditingStyle.None, forRowAtIndexPath: indexPath)
                 self.getThoughtAttachmentImages(thoughtAttachments)
                 self.performSegueWithIdentifier(InterfaceBuilderInfo.SeguePath.showSearchedThoughtAttachments, sender: self)
@@ -240,9 +240,9 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         let image = UIImage(contentsOfFile: path)
         
         if image == nil {
-            print("missing image at: \(path)")
+            //print("missing image at: \(path)")
         }
-        print("Loading image from path: \(path)")
+        //print("Loading image from path: \(path)")
         return image
     }
 
@@ -300,7 +300,6 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         self.view.addSubview(self.customView!)
         self.customView.textFieldView.becomeFirstResponder()
         self.tableView.setEditing(false, animated: true) //closes the cell that was swiped left.
-        print("three")
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -361,20 +360,10 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
             //let keyboardFrame: CGRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
 
             let keyboardHeight = keyboardSize?.height
-            /*print("FULL FRAME :: \(self.view.frame) = height: \(self.view.frame.height)")
-            print("UI MAIN FRAME SCREEN :: = height: \(UIScreen.mainScreen().bounds.height)")
-            //print("NAVIG BAR :: = height: \(STATUS_BAR_HEIGHT)")
-            print("KEYBOARD FRAME :: \(keyboardFrame) = height: \(keyboardFrame.height)")
-            print("CUSTOM VIEW FRAME :: \(self.customView.frame) = height: \(self.customView.frame.height)")*/
-            
-            
-            //print("++ frameHeight: \(self.view.frame.height) -- keyboardHeight: \(keyboardHeight) -- xib height: \(self.customView.frame.height)")
-            //self.customView.frame.origin.y = -150 //no luck, moves the whole frame up, but I need just the height to shrink!
-            
+           
             if(self.customView.frame.height + keyboardHeight! + 5 >= self.view.frame.height) {
-                //20 is usually the status bar height, so 20 +5 gave me 319
                 let height = CGFloat(self.view.frame.height - 75 - keyboardHeight!)
-                print("--final height for addNote XIB: \(height)")
+                //print("--final height for addNote XIB: \(height)")
                 self.customView.endEditing(true)
                 self.customView.removeFromSuperview()
                 self.holderView.removeFromSuperview()
@@ -399,7 +388,6 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         
         for thought in self.returnedSearchResults  {
             let thisThoughtContent = HelperUtils.convertThoughtToString(thought)
-            print("working on: \(thisThoughtContent)")
             
             allObjectsToShare.append(thisThoughtContent)
             if(thought.thoughtAttachments?.count > 0) {
@@ -408,8 +396,6 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
             }
         }
         
-        print("all objects: \(allObjectsToShare.count)")
-
         let activityVC = UIActivityViewController(activityItems: allObjectsToShare, applicationActivities: nil)
         activityVC.navigationController?.navigationBar.backgroundColor = UIColor(rgba: "#3CB3B5")
         activityVC.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()

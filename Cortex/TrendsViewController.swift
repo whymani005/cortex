@@ -356,7 +356,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.timeZone = NSTimeZone(abbreviation: "UTC");
         let defaultDate = dataRepo.getFirstThoughtCreatedAtDate()
-        print("FIRST THOUGHT DATE: \(defaultDate)")
+        //print("FIRST THOUGHT DATE: \(defaultDate)")
         let numOfDaysSinceFirstThought = DateUtils.daysBetweenDates(NSDate(), endDate: defaultDate)
         
         let dateStr = trendsRepo.getDateStringArrayForLastNDaysFromGivenDate(NSDate(), numOfDays: -numOfDaysSinceFirstThought)

@@ -57,7 +57,7 @@ class SearchedThoughtAttachmentsViewController: UIViewController, UIScrollViewDe
     func loadPage(page: Int) {
         if page < 0 || page >= pageImages.count {
             // If it's outside the range of what you have to display, then do nothing
-            print("OUTSIDE THE RANGE!!")
+            //print("OUTSIDE THE RANGE!!")
             return
         }
         displayImageView.image = pageImages[page]

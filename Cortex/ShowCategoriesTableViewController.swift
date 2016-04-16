@@ -24,19 +24,12 @@ class ShowCategoriesTableViewController: UITableViewController {
     
     // Retreive the managedObjectContext from AppDelegate
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    let currUsername = NSUserDefaults.standardUserDefaults().stringForKey(UserInformation.USER_EMAIL)
     var categories = [Category]()
     
     let dataRepo = DataRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         tableView.delegate = self
@@ -49,7 +42,6 @@ class ShowCategoriesTableViewController: UITableViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "categoryInputTextFieldChanged:", name: UITextFieldTextDidChangeNotification, object: nil)
         
-        //self.navigationController!.navigationBar.translucent = NO;
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -173,7 +165,7 @@ class ShowCategoriesTableViewController: UITableViewController {
         //CODE TO BE RUN ON CELL TOUCH
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        print("didSelectRowAtIndexPath - \(categories[indexPath.row].category)")
+        //print("didSelectRowAtIndexPath - \(categories[indexPath.row].category)")
         
         self.showCategoriesDelegateVar?.selectedCategory(categories[indexPath.row].category!, categorySelectedGuid: categories[indexPath.row].guid!)
         self.navigationController?.popViewControllerAnimated(true)
@@ -189,7 +181,6 @@ class ShowCategoriesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .Default, title: "\u{2715}") { action, index in
-            print("delete button tapped")
             self.tableView(tableView, commitEditingStyle: UITableViewCellEditingStyle.Delete, forRowAtIndexPath: indexPath)
         }
         delete.backgroundColor = UIColor(rgba: "#ef3340")
@@ -224,7 +215,7 @@ class ShowCategoriesTableViewController: UITableViewController {
         let newCategoryCDObject = Category.createNewCategoryInMOC(self.managedObjectContext!, text: newCategoryValue, guid: guid)
         dataRepo.save()
         
-        print("Created NEW NEEDS_TO_BE_SYNCED CD category with guid: \(guid) for user: \(currUsername)")
+        //print("Created NEW NEEDS_TO_BE_SYNCED CD category with guid: \(guid)")
         return newCategoryCDObject
     }
 

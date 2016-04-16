@@ -65,8 +65,6 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         categoryButton.layer.cornerRadius = 8.0
         categoryButton.layer.borderWidth = 1
         categoryButton.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        print("heyyy")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -131,12 +129,9 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         if up == true {
             let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size
             let keyboardHeight = keyboardSize?.height
-            //print("++ frameHeight: \(self.view.frame.height) -- keyboardHeight: \(keyboardHeight)")
             
             previousConstant = self.textViewBottmConstraint.constant
-            //print("previousConstant: \(previousConstant)")
             self.textViewBottmConstraint.constant = keyboardHeight! - 25
-            //print("after: \(self.textViewBottmConstraint.constant)")
             UIView.animateWithDuration(0.2) { () -> Void in
                 self.view.layoutIfNeeded()
             }
@@ -174,9 +169,6 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
     
     @IBAction func clearButtonPressed(sender: AnyObject) {
         clearThoughtScreen()
-        /*thoughtContentTextView.resignFirstResponder()
-        self.textViewBottmConstraint.constant = 10
-        self.view.layoutIfNeeded()*/
     }
     
     func clearThoughtScreen() {
@@ -295,7 +287,6 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         
         //self.view.alpha = 1.0
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        //show success alert?
         clearThoughtScreen()
         clearBarButtonItemOutlet.enabled = true
         attachmentBarButtonItemOutlet.enabled = true
@@ -311,12 +302,11 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         //MAIN THREAD - SAVE THOUGHT TO CD
         let newCDThought = Thought.createNewThoughtInMOC(self.managedObjectContext!, category: cdCategoryObject, categoryString: cdCategoryObject.category, mood: self.selectedMood, location: self.myCurrentLocationString, thoughtText: thoughtTextString, guid: newThoughtGuid, createdAt: createDate)
         self.dataRepo.save()
-        //saveSearchWordsForThought(thoughtTextString, thought: newCDThought)
-        print("Created NEW NEEDS_TO_BE_SYNCED CD thought with guid: \(newThoughtGuid)")
+        //print("Created NEW NEEDS_TO_BE_SYNCED CD thought with guid: \(newThoughtGuid)")
         
         //MAIN THREAD - SAVE ATT TO CD
         if(!self.attachmentImages.isEmpty && self.attachmentImages.count > 0) {
-            print("Number of attachments for this thought: \(self.attachmentImages.count)")
+            //print("Number of attachments for this thought: \(self.attachmentImages.count)")
             for attachment in self.attachmentImages {
                 let attachmentGUID = NSUUID().UUIDString
                 
@@ -328,14 +318,14 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
                 if(success) {
                     _ = Attachment.createNewAttachmentInMOC(self.managedObjectContext!, name: imageName, thought: newCDThought, guid: attachmentGUID)
                     self.dataRepo.save()
-                    print("Created CD attachemnt with guid: \(attachmentGUID)")
+                    //print("Created CD attachemnt with guid: \(attachmentGUID)")
                 }
             }
         }
         
         newCDThought.setValue(NSDate(), forKey: EntityInfo.Thought.lastModified_CD_ONLY)
         self.dataRepo.save()
-        print("Updated CD thought with guid: \(newThoughtGuid) to ALREADY_SYNCED")
+        //print("Updated CD thought with guid: \(newThoughtGuid) to ALREADY_SYNCED")
         
     }
     
@@ -359,7 +349,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
             // User has not yet made a choice with regards to this application
         case .NotDetermined :
             manager.requestWhenInUseAuthorization()
-            print("prompt the user to enable location services")
+            //print("prompt the user to enable location services")
             
             // User has explicitly denied authorization for this application, or
             // location services are disabled in Settings.
@@ -372,7 +362,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
             // launch APIs has not been granted.
         case .AuthorizedWhenInUse :
             manager.startUpdatingLocation()
-            print("authorized when in use")
+            //print("authorized when in use")
             
             // Currently only .Restricted falls here and there's not much we can do about it
             // so we'll simply move on with our lives
@@ -385,7 +375,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
     //responds to a location update event
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let currentLocation = locations.last as CLLocation!
-        print("didUpdateLocations:  \(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)")
+        //print("didUpdateLocations:  \(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)")
         self.myCurrentLatitude = currentLocation.coordinate.latitude
         self.myCurrentLongitude = currentLocation.coordinate.longitude
         
@@ -406,7 +396,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
                     addressString = addressString + placemark!.country!
                 }
                 self.myCurrentLocationString = addressString
-                print("LOCATION ------------ \(addressString)")
+                //print("LOCATION ------------ \(addressString)")
             }
         })
     }
@@ -416,7 +406,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
 
     func saveSearchWordsForThought(thoughtTextString: String, thought: Thought) {
         let thoughtTokens = StringUtils.tokenize(thoughtTextString)
-        print("%%%%% TOKENS -- \(thoughtTokens)")
+        //print("%%%%% TOKENS -- \(thoughtTokens)")
         /*for token : AnyObject in thoughtTokens {
             if let sw = dataRepo.getSearchEntityByKeyword(token as! String) {
                 sw.thoughts?.addObject(thought)
@@ -468,7 +458,6 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
     
     func attachmentVCDismissed(attachments: [UIImage]) {
         attachmentImages = attachments
-        print("# attachments in entryVC coming in from attachmentVC: \(attachmentImages.count)")
     }
     
     override func didReceiveMemoryWarning() {

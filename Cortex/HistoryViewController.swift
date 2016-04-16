@@ -108,12 +108,12 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
     
     func didSelectDate(date: NSDate) {
         if(defaultSelection) {
-            print("--- default select --- \(date.day) ---")
+            //print("--- default select --- \(date.day) ---")
             defaultSelection = false
         } else {
             let formatter = NSDateFormatter()
             formatter.dateStyle = NSDateFormatterStyle.LongStyle
-            print("\(date.year)-\(date.month)-\(date.day) **click**")
+            //print("\(date.year)-\(date.month)-\(date.day) **click**")
             
             searchResults = dataRepo.getAllCDThoughtsForDate(date)
             actionAfterSearchCriteriaSelection(formatter.stringFromDate(date))

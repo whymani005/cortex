@@ -32,12 +32,6 @@ class AttachmentsScrollViewController: UIViewController, UIScrollViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        
-        /*let vc = self.presentingViewController
-        if( ((vc?.isKindOfClass(EntryViewController)) != nil) ) {
-            let a = self.navigationController?.viewControllers[0] as! EntryViewController
-            pageImages = a.attachmentImages
-        }*/
 
         refreshScrollView()
     }
@@ -54,16 +48,6 @@ class AttachmentsScrollViewController: UIViewController, UIScrollViewDelegate, U
     
     override func viewWillDisappear(animated: Bool) {
         self.attachmentDelegateVar?.attachmentVCDismissed(pageImages)
-        
-        /*let vc = self.presentingViewController
-        print("print out vc")
-        print(vc)
-        if((vc?.isKindOfClass(EntryViewController)) != nil) {
-            let a = self.navigationController?.viewControllers[0] as! EntryViewController
-            a.attachmentImages = pageImages
-            print("HEYYYY HOW MANY PICS: %d", pageImages.count)
-            refreshScrollView()
-        }*/
     }
     
     func resetView (count : Int) {
