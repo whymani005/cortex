@@ -48,6 +48,31 @@ class HelperUtils {
         }
     }
     
+    class func convertThoughtToString(inputThought: Thought) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        var thisThoughtContent = ""
+        
+        thisThoughtContent.appendContentsOf("Date: ")
+        thisThoughtContent.appendContentsOf(formatter.stringFromDate(inputThought.createdAt!))
+        thisThoughtContent.appendContentsOf("\nCategory: ")
+        thisThoughtContent.appendContentsOf(inputThought.categoryString!)
+        thisThoughtContent.appendContentsOf("\n")
+        thisThoughtContent.appendContentsOf(inputThought.thoughtContent!)
+        
+        if(!StringUtils.isBlank(inputThought.note)) {
+            thisThoughtContent.appendContentsOf("\nNote: ")
+            thisThoughtContent.appendContentsOf(inputThought.note!)
+        }
+        
+        thisThoughtContent.appendContentsOf("\n\n")
+        return thisThoughtContent
+    }
+    
+    
+    
     class func getDocumentsURL() -> NSURL {
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
         return documentsURL
