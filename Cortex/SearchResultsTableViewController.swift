@@ -398,13 +398,10 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         var allObjectsToShare = [AnyObject]()
         
         for thought in self.returnedSearchResults  {
-            var thisThoughtContent = thought.thoughtContent
-            if(!StringUtils.isBlank(thought.note)) {
-                thisThoughtContent?.appendContentsOf("\nNote: ")
-                thisThoughtContent?.appendContentsOf(thought.note!)
-            }
+            let thisThoughtContent = HelperUtils.convertThoughtToString(thought)
             print("working on: \(thisThoughtContent)")
-            allObjectsToShare.append(thisThoughtContent!)
+            
+            allObjectsToShare.append(thisThoughtContent)
             if(thought.thoughtAttachments?.count > 0) {
                 self.getThoughtAttachmentImages(thought.thoughtAttachments)
                 allObjectsToShare.append(attachmentImages)
@@ -441,7 +438,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         
         self.presentViewController(activityVC, animated: true, completion: nil)
     }
-    
+        
     func generatePDFForAllSearchResultThoughts() {
         // save all table
         var frame = self.tableView.frame;
