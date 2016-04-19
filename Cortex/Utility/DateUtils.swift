@@ -21,4 +21,14 @@ class DateUtils {
         let components = calendar.components([.Day], fromDate: startDate, toDate: endDate, options: [])
         return components.day
     }
+    
+    class func dateByAddingDays(inputDate: NSDate, days: Int) -> NSDate {
+        let resultDate = NSCalendar.currentCalendar().dateByAddingUnit(
+            .Day,
+            value: days,
+            toDate: inputDate,
+            options: NSCalendarOptions(rawValue: 0))
+        return resultDate!
+    }
+    
 }

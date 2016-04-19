@@ -405,7 +405,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
     //################################################ HELPER METHODS ###################################################
 
     func saveSearchWordsForThought(thoughtTextString: String, thought: Thought) {
-        let thoughtTokens = StringUtils.tokenize(thoughtTextString)
+        //let thoughtTokens = StringUtils.tokenize(thoughtTextString)
         //print("%%%%% TOKENS -- \(thoughtTokens)")
         /*for token : AnyObject in thoughtTokens {
             if let sw = dataRepo.getSearchEntityByKeyword(token as! String) {

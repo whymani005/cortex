@@ -182,8 +182,8 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.timeZone = NSTimeZone(abbreviation: "UTC");
         let defaultDate = dataRepo.getFirstThoughtCreatedAtDate()
-        let numOfDaysSinceFirstThought = DateUtils.daysBetweenDates(NSDate(), endDate: defaultDate)
-        //print("setUpMoodLineChartForAll date: \(defaultDate) - numOfDaysSinceFirstThought: \(numOfDaysSinceFirstThought)")
+        let dayBeforeDefaultDate = DateUtils.dateByAddingDays(defaultDate, days: -1)
+        let numOfDaysSinceFirstThought = DateUtils.daysBetweenDates(NSDate(), endDate: dayBeforeDefaultDate)
         
         let dateStr = trendsRepo.getDateStringArrayForLastNDaysFromGivenDate(NSDate(), numOfDays: -numOfDaysSinceFirstThought)
         let moodavg  = trendsRepo.getMoodAvgArrayForLastNDaysFromGivenDate(NSDate(), numOfDays: -numOfDaysSinceFirstThought)
@@ -263,7 +263,9 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.timeZone = NSTimeZone(abbreviation: "UTC");
         let defaultDate = dataRepo.getFirstThoughtCreatedAtDate()
-        let daysBetween = DateUtils.daysBetweenDates(NSDate(), endDate: defaultDate)
+        let dayBeforeDefaultDate = DateUtils.dateByAddingDays(defaultDate, days: -1)
+        let daysBetween = DateUtils.daysBetweenDates(NSDate(), endDate: dayBeforeDefaultDate)
+        
         /*if(daysBetween <= 0) {
             daysBetween = 1
         }*/
@@ -356,8 +358,9 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.timeZone = NSTimeZone(abbreviation: "UTC");
         let defaultDate = dataRepo.getFirstThoughtCreatedAtDate()
-        //print("FIRST THOUGHT DATE: \(defaultDate)")
-        let numOfDaysSinceFirstThought = DateUtils.daysBetweenDates(NSDate(), endDate: defaultDate)
+        let dayBeforeDefaultDate = DateUtils.dateByAddingDays(defaultDate, days: -1)
+        let numOfDaysSinceFirstThought = DateUtils.daysBetweenDates(NSDate(), endDate: dayBeforeDefaultDate)
+        //print("setUpThoughtsBarChartForAll FIRST THOUGHT DATE: \(defaultDate) --- \(dayBeforeDefaultDate)")
         
         let dateStr = trendsRepo.getDateStringArrayForLastNDaysFromGivenDate(NSDate(), numOfDays: -numOfDaysSinceFirstThought)
         let data : [Int] = trendsRepo.getNumThoughtsArrayForLastNDaysFromGivenDate(NSDate(), numOfDays: -numOfDaysSinceFirstThought)
