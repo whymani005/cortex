@@ -4,13 +4,9 @@
 A informative tool to manage and organize thoughts and ideas sparked through out the day into custom categories.
 
 <p align="center">
-  <img src="/screenshots/enterThought.PNG" width="350"/>
-  <img src="/screenshots/allCategories.PNG" width="350"/>
-</p>
-
-<p align="center">
-  <img src="/screenshots/attachmentOptions.PNG" width="350"/>
-  <img src="/screenshots/doodleSettings.PNG" width="350"/>
+  <img src="/screenshots/enterThought.PNG" width="233"/>
+  <img src="/screenshots/allCategories.PNG" width="233"/>
+  <img src="/screenshots/doodleSettings.PNG" width="233"/>
 </p>
 
 <p align="center">
