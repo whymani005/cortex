@@ -47,15 +47,18 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         pieChartView.descriptionText = ""
         pieChartView.noDataText = "No data available yet"
         pieChartView.backgroundColor = UIColor.whiteColor()
-        self.pieChartView.valueFormatter = NSNumberFormatter()
-        self.pieChartView.valueFormatter?.minimumFractionDigits = 0
+        self.pieChartView.usePercentValuesEnabled = true
         
         barChartView.delegate = self
         barChartView.descriptionText = ""
         barChartView.noDataText = "No data available yet"
         barChartView.backgroundColor = UIColor.whiteColor()
-        self.barChartView.valueFormatter = NSNumberFormatter()
-        self.barChartView.valueFormatter?.minimumFractionDigits = 0
+        barChartView.gridBackgroundColor = UIColor.whiteColor()
+        self.barChartView.leftAxis.valueFormatter = NSNumberFormatter()
+        self.barChartView.leftAxis.valueFormatter?.minimumFractionDigits = 0
+        let test = NSNumberFormatter()
+        test.minimumFractionDigits = 0;
+        self.barChartView.data?.setValueFormatter(test)
         
         // Do any additional setup after loading the view.
         currentViewingChartType = Int(0)
@@ -211,7 +214,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "My Mood")
         lineChartDataSet.circleRadius = CGFloat(6.0)
    
-        lineChartDataSet.setMainCircleColor(UIColor(rgba: "#eed541")) //F6A242
+        lineChartDataSet.setCircleColor(UIColor(rgba: "#eed541"))
         /*for i in 0..<noMoodIndexes.count {
             let indexValue : Int = noMoodIndexes[i]
             lineChartDataSet.setCircleColorAtIndex(UIColor.lightGrayColor(), index: indexValue)
@@ -225,11 +228,11 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         lineChartView.xAxis.drawGridLinesEnabled = false
         lineChartView.xAxis.drawAxisLineEnabled = false
 
-        lineChartView.leftAxis.customAxisMax = Double(6.5)
-        lineChartView.leftAxis.customAxisMin = Double(0.5)
+        lineChartView.leftAxis.axisMaxValue = Double(6.5)
+        lineChartView.leftAxis.axisMinValue = Double(0.5)
 
         lineChartView.drawGridBackgroundEnabled = false
-        lineChartView.legend.form = ChartLegend.ChartLegendForm.Line
+        lineChartView.legend.form = ChartLegend.Form.Line
         lineChartView.backgroundColor = UIColor.whiteColor()
         //lineChartView.animate(xAxisDuration: 2.0)
         
@@ -308,7 +311,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         
         pieChartDataSet.sliceSpace = 2.0;
         pieChartView.usePercentValuesEnabled = true;
-        pieChartView.holeTransparent = true;
+        pieChartView.drawHoleEnabled = true
         pieChartView.holeRadiusPercent = 0.30 //0.40
         pieChartView.transparentCircleRadiusPercent = 0.33 //0.43
         pieChartView.drawHoleEnabled = true;
@@ -317,7 +320,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         
         //pieChartView.extraBottomOffset //= CGFloat(-8.00)
         
-        pieChartView.legend.position = ChartLegend.ChartLegendPosition.LeftOfChart
+        pieChartView.legend.position = ChartLegend.Position.LeftOfChart
         //pieChartView.legend.enabled = false
         //pieChartView.backgroundColor = UIColor.lightGrayColor()
         pieChartView.legend.xEntrySpace = 7.0
@@ -389,7 +392,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         barChartView.leftAxis.valueFormatter = numberFormatter
         
         barChartView.drawGridBackgroundEnabled = true
-        barChartView.legend.form = ChartLegend.ChartLegendForm.Line
+        barChartView.legend.form = ChartLegend.Form.Line
         barChartView.backgroundColor = UIColor.whiteColor()
         
         barChartView.data = chartData

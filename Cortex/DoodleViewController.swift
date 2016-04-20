@@ -153,18 +153,18 @@ class DoodleViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         initDrawSettingsWithPreviousValues()
         
-        self.customDrawSettingsView.widthSlider.addTarget(self, action: "widthSliderChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        self.customDrawSettingsView.widthSlider.addTarget(self, action: #selector(DoodleViewController.widthSliderChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        self.customDrawSettingsView.opacitySlider.addTarget(self, action: "opacitySliderChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        self.customDrawSettingsView.opacitySlider.addTarget(self, action: #selector(DoodleViewController.opacitySliderChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        self.customDrawSettingsView.redSlider.addTarget(self, action: "redSliderChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        self.customDrawSettingsView.redSlider.addTarget(self, action: #selector(DoodleViewController.redSliderChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        self.customDrawSettingsView.greenSlider.addTarget(self, action: "greenSliderChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        self.customDrawSettingsView.greenSlider.addTarget(self, action: #selector(DoodleViewController.greenSliderChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        self.customDrawSettingsView.blueSlider.addTarget(self, action: "blueSliderChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        self.customDrawSettingsView.blueSlider.addTarget(self, action: #selector(DoodleViewController.blueSliderChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        self.customDrawSettingsView.cancelButton.addTarget(self, action: "cancelSettingsButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.customDrawSettingsView.okButton.addTarget(self, action: "saveSettingsButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.customDrawSettingsView.cancelButton.addTarget(self, action: #selector(DoodleViewController.cancelSettingsButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.customDrawSettingsView.okButton.addTarget(self, action: #selector(DoodleViewController.saveSettingsButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(self.customDrawSettingsView!)
     }

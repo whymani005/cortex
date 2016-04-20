@@ -47,7 +47,7 @@ class CortexTabBarController: UITabBarController {
                     item.selectedImage = finalImage.imageWithColor(UIColor(rgba:"#775566")).imageWithRenderingMode(.AlwaysOriginal) //#ee9977
                 }
             }
-            i++
+            i += 1
         }
     }
     

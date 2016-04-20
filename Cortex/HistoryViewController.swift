@@ -241,8 +241,8 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
         self.customView.clipsToBounds = true
 
         //self.customView.saveButton.enabled = false
-        self.customView.cancelButton.addTarget(self, action: "cancelButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.customView.saveButton.addTarget(self, action: "searchButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.customView.cancelButton.addTarget(self, action: #selector(HistoryViewController.cancelButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.customView.saveButton.addTarget(self, action: #selector(HistoryViewController.searchButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(self.customView!);
     }
     

@@ -121,8 +121,8 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
     }
 
     func setupKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EntryViewController.keyboardWasShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EntryViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func moveTextViewForKeyboard(notification: NSNotification, up: Bool) {
@@ -293,8 +293,8 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
         SVProgressHUD.dismiss()
     }
     
-    func saveNewThoughtWithCategory(cdCategoryObject: Category, newThoughtGuid: String, var thoughtTextString: String) {
-        thoughtTextString = thoughtTextString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    func saveNewThoughtWithCategory(cdCategoryObject: Category, newThoughtGuid: String, thoughtTextString: String) {
+        let thoughtTextString = thoughtTextString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let createDate = NSDate()
         
         //***************************************************************************************************

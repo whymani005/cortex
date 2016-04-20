@@ -40,7 +40,7 @@ class ShowCategoriesTableViewController: UITableViewController {
         
         categories = dataRepo.getAllCategories()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "categoryInputTextFieldChanged:", name: UITextFieldTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ShowCategoriesTableViewController.categoryInputTextFieldChanged(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
         
     }
     
@@ -105,8 +105,8 @@ class ShowCategoriesTableViewController: UITableViewController {
         self.customView.clipsToBounds = true
         
         self.customView.saveButton.enabled = false
-        self.customView.cancelButton.addTarget(self, action: "cancelButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.customView.saveButton.addTarget(self, action: "saveButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.customView.cancelButton.addTarget(self, action: #selector(ShowCategoriesTableViewController.cancelButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.customView.saveButton.addTarget(self, action: #selector(ShowCategoriesTableViewController.saveButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(self.customView!);
 
     }

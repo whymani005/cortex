@@ -293,8 +293,8 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
             self.customView.textFieldView.text = thought.note
         }
         
-        self.customView.cancelButton.addTarget(self, action: "cancelNoteButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.customView.saveButton.addTarget(self, action: "saveNoteButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.customView.cancelButton.addTarget(self, action: #selector(SearchResultsTableViewController.cancelNoteButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.customView.saveButton.addTarget(self, action: #selector(SearchResultsTableViewController.saveNoteButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.customView.textFieldView.delegate = self
         
         self.view.addSubview(self.customView!)
@@ -347,7 +347,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     //############################# KEYBOARD HELPERS #########################################
     
     func setupKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchResultsTableViewController.keyboardWasShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
     }
     
     func keyboardWasShown(aNotification:NSNotification) {

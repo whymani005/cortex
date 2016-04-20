@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeCategoryView" customModule="Cortex" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="sr0-4F-FqS" id="Dg6-eI-rV0"/>
+                <outlet property="lblTitle" destination="acP-aO-PC3" id="r9p-dA-UaB"/>
+                <outlet property="saveButton" destination="IzP-E6-U6W" id="zTO-pZ-XP1"/>
+                <outlet property="tableView" destination="Ydh-jw-ZqW" id="Low-PF-YUc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="319"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE CATEGORY" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acP-aO-PC3" userLabel="title">
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="35"/>
+                    <color key="backgroundColor" red="0.87058823529411766" green="0.74117647058823533" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Jfv-X8-RUC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sr0-4F-FqS">
+                    <rect key="frame" x="8" y="40" width="48" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzP-E6-U6W">
+                    <rect key="frame" x="238" y="43" width="34" height="30"/>
+                    <state key="normal" title="Save"/>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ydh-jw-ZqW">
+                    <rect key="frame" x="0.0" y="78" width="280" height="241"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="acP-aO-PC3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="9MR-M7-nKv"/>
+                <constraint firstItem="acP-aO-PC3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Agy-NK-alr"/>
+                <constraint firstItem="sr0-4F-FqS" firstAttribute="top" secondItem="acP-aO-PC3" secondAttribute="bottom" constant="5" id="DV1-7s-t3x"/>
+                <constraint firstAttribute="trailing" secondItem="Ydh-jw-ZqW" secondAttribute="trailing" id="LLa-94-SZe"/>
+                <constraint firstAttribute="trailing" secondItem="IzP-E6-U6W" secondAttribute="trailing" constant="8" id="MSM-pL-7Ib"/>
+                <constraint firstAttribute="bottom" secondItem="acP-aO-PC3" secondAttribute="bottom" constant="64" id="P2R-IA-6dN"/>
+                <constraint firstItem="sr0-4F-FqS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="QbK-IJ-Bjo"/>
+                <constraint firstAttribute="bottom" secondItem="Ydh-jw-ZqW" secondAttribute="bottom" id="Rdl-F0-AF2"/>
+                <constraint firstItem="acP-aO-PC3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Soi-8N-lzY"/>
+                <constraint firstAttribute="trailing" secondItem="acP-aO-PC3" secondAttribute="trailing" id="TiW-wp-45S"/>
+                <constraint firstItem="IzP-E6-U6W" firstAttribute="top" secondItem="acP-aO-PC3" secondAttribute="bottom" constant="8" id="ZmB-4X-BEh"/>
+                <constraint firstItem="acP-aO-PC3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="baX-Fr-xHO"/>
+                <constraint firstItem="Ydh-jw-ZqW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cOl-xF-imn"/>
+                <constraint firstAttribute="bottom" secondItem="Ydh-jw-ZqW" secondAttribute="bottom" id="iRI-fi-vas"/>
+                <constraint firstItem="acP-aO-PC3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="m14-MK-wXy"/>
+                <constraint firstItem="Ydh-jw-ZqW" firstAttribute="top" secondItem="sr0-4F-FqS" secondAttribute="bottom" constant="8" id="t5K-y4-C2i"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="9MR-M7-nKv"/>
+                    <exclude reference="P2R-IA-6dN"/>
+                    <exclude reference="baX-Fr-xHO"/>
+                    <exclude reference="m14-MK-wXy"/>
+                    <exclude reference="iRI-fi-vas"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="265" y="158.5"/>
+        </view>
+    </objects>
+</document>
