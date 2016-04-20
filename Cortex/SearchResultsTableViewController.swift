@@ -28,6 +28,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     var thoughtIndexToAddNote : Int = -1
     var addNoteCustomViewOnDisplay = false
     
+    let categoryDataSource = CategoryListDataSource()
     var changeCatCustomView : ChangeCategoryView!
 
     override func viewDidLoad() {
@@ -96,6 +97,10 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(InterfaceBuilderInfo.CellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultTableViewCell
+        
+        cell.editCategoryButton.tag = indexPath.section
+        cell.editCategoryButton.addTarget(self, action: "changeCategoryButtonPressed:", forControlEvents: .TouchUpInside)
+
         
         cell.dateLabel.text = formatter.stringFromDate(returnedSearchResults[indexPath.section].createdAt!)
         
@@ -226,6 +231,10 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         tableView.layoutIfNeeded()
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
     func getThoughtAttachmentImages(atts : NSSet?) {
         attachmentImages.removeAll(keepCapacity: false)
         for att in atts! {
@@ -262,6 +271,58 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         SVProgressHUD.dismiss()
         self.tableView.layoutIfNeeded()
     }
+    
+    //############################# CHANGE CATEGORY HELPERS #################################
+    
+    func changeCategoryButtonPressed(sender: UIButton) {
+        let chosenThoughtToEdit = returnedSearchResults[sender.tag]
+        displayChangeCategoryXib()
+        
+    }
+    
+    func displayChangeCategoryXib() {
+        //Scroll to the top
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+        tableView.scrollEnabled = false
+        
+        holderView = UIView(frame: self.view.frame)
+        holderView.backgroundColor = UIColor.grayColor()
+        holderView.alpha = 0.6
+        self.view.addSubview(holderView)
+        
+        let screenWidth : CGFloat = self.view.frame.size.width
+        let customViewWidth : CGFloat = screenWidth - 30
+        let customViewY : CGFloat = 0 + 5
+        //let height = CGFloat(350)
+        self.changeCatCustomView = ChangeCategoryView(frame: CGRectMake((screenWidth-customViewWidth)/2, customViewY, customViewWidth, 300))
+        self.changeCatCustomView.layer.borderWidth = 0.8
+        self.changeCatCustomView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.changeCatCustomView.layer.cornerRadius = 10
+        self.changeCatCustomView.clipsToBounds = true
+        
+        self.changeCatCustomView.cancelButton.addTarget(self, action: #selector(SearchResultsTableViewController.cancelEditCategoryButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.changeCatCustomView.saveButton.addTarget(self, action: #selector(SearchResultsTableViewController.saveEditCategoryButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.changeCatCustomView.tableView.dataSource = categoryDataSource
+        //self.changeCatCustomView.tableView.delegate = self
+        self.changeCatCustomView.tableView.reloadData()
+        
+        self.view.addSubview(self.changeCatCustomView!)
+        
+    }
+    
+    func cancelEditCategoryButtonTapped(sender:UIButton!) {
+        self.holderView.endEditing(true)
+        self.view.endEditing(true)
+        self.changeCatCustomView.removeFromSuperview()
+        self.holderView.removeFromSuperview()
+        tableView.scrollEnabled = true
+    }
+    
+    func saveEditCategoryButtonTapped(sender:UIButton!) {
+        
+    }
+    
     
     //############################# ADD NOTE HELPERS #################################
     

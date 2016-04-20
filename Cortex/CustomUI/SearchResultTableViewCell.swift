@@ -12,7 +12,10 @@ class SearchResultTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    
     @IBOutlet weak var moodImageView: UIImageView!
+    @IBOutlet weak var editCategoryButton: UIButton!
+    
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var thoughtContent: UILabel!

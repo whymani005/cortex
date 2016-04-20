@@ -24,6 +24,7 @@ struct InterfaceBuilderInfo {
         static let attachmentCell = "attachmentCell"
         static let searchResultCell = "searchResultCell"
         static let historyCell = "historyCell"
+        static let changeCategoryCell = "changeCategoryCell"
     }
     
     struct Constants {
