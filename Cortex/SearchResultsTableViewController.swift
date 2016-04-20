@@ -51,9 +51,9 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         //setupKeyboardNotifications()
         tableView.reloadData()
         if(self.returnedSearchResults.count < 2) {
-            navigationItem.rightBarButtonItems = []
             exportBarButton.enabled = false
-        } else {
+            navigationItem.rightBarButtonItems = []
+                    } else {
             navigationItem.rightBarButtonItems = [exportBarButton]
             exportBarButton.enabled = true
         }
@@ -291,10 +291,13 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         self.view.addSubview(holderView)
         
         let screenWidth : CGFloat = self.view.frame.size.width
+        let screenHeight : CGFloat = self.view.frame.size.height
+        let tabBarHeight : CGFloat = self.tabBarController!.tabBar.frame.size.height
         let customViewWidth : CGFloat = screenWidth - 30
+        let customViewHeight : CGFloat = screenHeight - (tabBarHeight*3) - 10
         let customViewY : CGFloat = 0 + 5
-        //let height = CGFloat(350)
-        self.changeCatCustomView = ChangeCategoryView(frame: CGRectMake((screenWidth-customViewWidth)/2, customViewY, customViewWidth, 300))
+        //print("screenHeight: \(screenHeight) -- tabBarHeight: \(tabBarHeight) -- customViewHeight: \(customViewHeight)")
+        self.changeCatCustomView = ChangeCategoryView(frame: CGRectMake((screenWidth-customViewWidth)/2, customViewY, customViewWidth, customViewHeight))
         self.changeCatCustomView.layer.borderWidth = 0.8
         self.changeCatCustomView.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.changeCatCustomView.layer.cornerRadius = 10
@@ -304,23 +307,32 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         self.changeCatCustomView.saveButton.addTarget(self, action: #selector(SearchResultsTableViewController.saveEditCategoryButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.changeCatCustomView.tableView.dataSource = categoryDataSource
-        //self.changeCatCustomView.tableView.delegate = self
+        self.changeCatCustomView.tableView.delegate = categoryDataSource
         self.changeCatCustomView.tableView.reloadData()
         
         self.view.addSubview(self.changeCatCustomView!)
         
     }
     
-    func cancelEditCategoryButtonTapped(sender:UIButton!) {
-        self.holderView.endEditing(true)
-        self.view.endEditing(true)
+    func dismissChangeCategoryXib() {
         self.changeCatCustomView.removeFromSuperview()
         self.holderView.removeFromSuperview()
         tableView.scrollEnabled = true
     }
     
+    func cancelEditCategoryButtonTapped(sender:UIButton!) {
+        dismissChangeCategoryXib()
+    }
+    
     func saveEditCategoryButtonTapped(sender:UIButton!) {
+        //get choosen cat
+        if(!StringUtils.isBlank(categoryDataSource.chosenNewCat)) {
+            //edit and save thought
+            //reload data?
+            print("BEFORE SAVING to CD - \(categoryDataSource.chosenNewCat)")
+        }
         
+        dismissChangeCategoryXib()
     }
     
     

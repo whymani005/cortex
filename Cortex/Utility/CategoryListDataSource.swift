@@ -9,9 +9,10 @@
 import Foundation
 
 
-class CategoryListDataSource: NSObject, UITableViewDataSource {
+class CategoryListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     let dataRepo = DataRepository()
+    var chosenNewCat = ""
     
     // MARK: - Table view data source
     
@@ -37,6 +38,20 @@ class CategoryListDataSource: NSObject, UITableViewDataSource {
 
         return cell!
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //CODE TO BE RUN ON CELL TOUCH
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        print("didSelectRowAtIndexPath - "+dataRepo.getAllCategories()[indexPath.row].category!)
+        chosenNewCat = dataRepo.getAllCategories()[indexPath.row].category!
+        //dismissCustomView()
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+
     
     
 }
