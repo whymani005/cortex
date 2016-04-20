@@ -27,6 +27,8 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     var keyboardHeightRightNow : CGFloat = -1.0
     var thoughtIndexToAddNote : Int = -1
     var addNoteCustomViewOnDisplay = false
+    
+    var changeCatCustomView : ChangeCategoryView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
