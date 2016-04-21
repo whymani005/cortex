@@ -26,7 +26,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
     var noMoodIndexes : [Int] = []
     var currentViewingChartType : Int = -1
     
-    var chartNameLabel : [String] = ["Mood Chart", "Top Categories", "Number of Entries"] //Map View?? (haha!)
+    var chartNameLabel : [String] = ["Mood Chart", "Top Categories", "Number of Thoughts"] //Map View?? (haha!)
  
     let trendsRepo = TrendsRepository()
     let dataRepo = DataRepository()
@@ -380,7 +380,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "# Of Entries")
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "# Of Thoughts")
         let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
         chartDataSet.colors = [(UIColor(rgba: "#eed541"))] //f6a242
         
@@ -392,6 +392,7 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         let numberFormatter = NSNumberFormatter()
         numberFormatter.generatesDecimalNumbers = false
         barChartView.leftAxis.valueFormatter = numberFormatter
+        chartData.setValueFormatter(numberFormatter)
         
         barChartView.drawGridBackgroundEnabled = true
         barChartView.legend.form = ChartLegend.Form.Line
