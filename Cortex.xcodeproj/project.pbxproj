@@ -78,7 +78,7 @@
 		C852229B1BC07AEB0041485F /* AttachmentsScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852229A1BC07AEB0041485F /* AttachmentsScrollViewController.swift */; };
 		C85222B61BC35D4C0041485F /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85222B51BC35D4C0041485F /* SearchResultsTableViewController.swift */; };
 		C85223BB1BC770B90041485F /* TrendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85223BA1BC770B90041485F /* TrendsViewController.swift */; };
-		C8E0DDA31BD1737600BAA593 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E0DDA11BD1737600BAA593 /* Bolts.framework */; };
+		C8E0DDA31BD1737600BAA593 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E0DDA11BD1737600BAA593 /* Bolts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C8EF2A5A1BABDD4400E66020 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EF2A591BABDD4400E66020 /* HistoryViewController.swift */; };
 		C8EF2A5C1BABDD5F00E66020 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EF2A5B1BABDD5F00E66020 /* EntryViewController.swift */; };
 		C8F4833C1CAE0FD400988365 /* WeekHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F4833A1CAE0FD400988365 /* WeekHeaderView.swift */; };
