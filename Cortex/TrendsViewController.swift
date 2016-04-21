@@ -320,7 +320,9 @@ class TrendsViewController: UIViewController, ChartViewDelegate {
         
         //pieChartView.extraBottomOffset //= CGFloat(-8.00)
         
-        pieChartView.legend.position = ChartLegend.Position.LeftOfChart
+        //pieChartView.legend.position = ChartLegend.Position.LeftOfChart
+        pieChartView.legend.verticalAlignment = ChartLegend.VerticalAlignment.Top
+
         //pieChartView.legend.enabled = false
         //pieChartView.backgroundColor = UIColor.lightGrayColor()
         pieChartView.legend.xEntrySpace = 7.0
