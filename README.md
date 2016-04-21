@@ -1,5 +1,9 @@
 #CORTEX
 
+<p align="center">
+  <img src="/screenshots/CortexLogo.png" width="350"/>
+</p>
+
 **What is Cortex?**
 A informative tool to manage and organize thoughts and ideas sparked through out the day into custom categories.
 
