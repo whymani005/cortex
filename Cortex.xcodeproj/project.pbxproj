@@ -29,8 +29,6 @@
 		C80969AC1CAD90F100CDD78E /* MonthCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969A31CAD90F100CDD78E /* MonthCollectionCell.swift */; };
 		C80969AD1CAD90F100CDD78E /* MonthCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80969A41CAD90F100CDD78E /* MonthCollectionCell.xib */; };
 		C80969AE1CAD90F100CDD78E /* NSDateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969A51CAD90F100CDD78E /* NSDateAdditions.swift */; };
-		C80969C01CAD97BF00CDD78E /* AboutCortexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969B31CAD97BF00CDD78E /* AboutCortexView.swift */; };
-		C80969C11CAD97BF00CDD78E /* AboutCortexView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80969B41CAD97BF00CDD78E /* AboutCortexView.xib */; };
 		C80969C21CAD97BF00CDD78E /* AddCategoryAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969B51CAD97BF00CDD78E /* AddCategoryAlertView.swift */; };
 		C80969C31CAD97BF00CDD78E /* AddCategoryAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80969B61CAD97BF00CDD78E /* AddCategoryAlertView.xib */; };
 		C80969C41CAD97BF00CDD78E /* AddThoughtNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969B71CAD97BF00CDD78E /* AddThoughtNoteView.swift */; };
@@ -173,8 +171,6 @@
 		C80969A41CAD90F100CDD78E /* MonthCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MonthCollectionCell.xib; path = CalendarKit/MonthCollectionCell.xib; sourceTree = "<group>"; };
 		C80969A51CAD90F100CDD78E /* NSDateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateAdditions.swift; path = CalendarKit/NSDateAdditions.swift; sourceTree = "<group>"; };
 		C80969B11CAD927F00CDD78E /* Cortex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cortex-Bridging-Header.h"; sourceTree = "<group>"; };
-		C80969B31CAD97BF00CDD78E /* AboutCortexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutCortexView.swift; path = CustomUI/AboutCortexView.swift; sourceTree = "<group>"; };
-		C80969B41CAD97BF00CDD78E /* AboutCortexView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutCortexView.xib; path = CustomUI/AboutCortexView.xib; sourceTree = "<group>"; };
 		C80969B51CAD97BF00CDD78E /* AddCategoryAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCategoryAlertView.swift; path = CustomUI/AddCategoryAlertView.swift; sourceTree = "<group>"; };
 		C80969B61CAD97BF00CDD78E /* AddCategoryAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddCategoryAlertView.xib; path = CustomUI/AddCategoryAlertView.xib; sourceTree = "<group>"; };
 		C80969B71CAD97BF00CDD78E /* AddThoughtNoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddThoughtNoteView.swift; path = CustomUI/AddThoughtNoteView.swift; sourceTree = "<group>"; };
@@ -322,8 +318,6 @@
 			children = (
 				C815B8DC1CC8A6A800CA652B /* ChangeCategoryView.swift */,
 				C815B8DD1CC8A6A800CA652B /* ChangeCategoryView.xib */,
-				C80969B31CAD97BF00CDD78E /* AboutCortexView.swift */,
-				C80969B41CAD97BF00CDD78E /* AboutCortexView.xib */,
 				C80969B51CAD97BF00CDD78E /* AddCategoryAlertView.swift */,
 				C80969B61CAD97BF00CDD78E /* AddCategoryAlertView.xib */,
 				C80969B71CAD97BF00CDD78E /* AddThoughtNoteView.swift */,
@@ -602,7 +596,6 @@
 				C80969CC1CAD97BF00CDD78E /* ShowQuoteView.xib in Resources */,
 				C80969C51CAD97BF00CDD78E /* AddThoughtNoteView.xib in Resources */,
 				C80969A81CAD90F100CDD78E /* CalendarView.xib in Resources */,
-				C80969C11CAD97BF00CDD78E /* AboutCortexView.xib in Resources */,
 				C815B8DF1CC8A6A800CA652B /* ChangeCategoryView.xib in Resources */,
 				C8F4833D1CAE0FD400988365 /* WeekHeaderView.xib in Resources */,
 				C84787E11BA900E7007F6D50 /* Main.storyboard in Resources */,
@@ -677,7 +670,6 @@
 				C80969961CAD8A7200CDD78E /* DataRepository.swift in Sources */,
 				C85222B61BC35D4C0041485F /* SearchResultsTableViewController.swift in Sources */,
 				C80969ED1CADA03C00CDD78E /* SVRadialGradientLayer.m in Sources */,
-				C80969C01CAD97BF00CDD78E /* AboutCortexView.swift in Sources */,
 				C80969851CAD87BC00CDD78E /* UIColorUtils.swift in Sources */,
 				C80969971CAD8A7200CDD78E /* DateUtils.swift in Sources */,
 				C809698B1CAD894800CDD78E /* InterfaceBuilderInfo.swift in Sources */,
