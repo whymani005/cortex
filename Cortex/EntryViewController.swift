@@ -37,7 +37,7 @@ class EntryViewController: UIViewController, ShowCategoriesDelegate, UITextViewD
     let dateFormatter = NSDateFormatter()
     
     var holderView : UIView!
-    var customView : ShowQuoteView!
+    //var customView : ShowQuoteView!
     
     var attachmentImages : [UIImage] = []
     
