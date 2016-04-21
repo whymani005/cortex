@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Bolts
+//import Bolts
 import CoreData
 
 @UIApplicationMain
