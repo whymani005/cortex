@@ -32,7 +32,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
                 var set = Set<CalendarLogic>()
                 set.insert(CalendarLogic(date: baseDate!))
                 // advance one year
-                for i in 0 ..< kMonthRange {
+                for _ in 0 ..< kMonthRange {
                     dateIter1 = dateIter1.firstDayOfFollowingMonth
                     dateIter2 = dateIter2.firstDayOfPreviousMonth
                     

@@ -51,13 +51,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     override func viewWillAppear(animated: Bool) {
         //setupKeyboardNotifications()
         tableView.reloadData()
-        if(self.returnedSearchResults.count < 2) {
-            exportBarButton.enabled = false
-            navigationItem.rightBarButtonItems = []
-                    } else {
-            navigationItem.rightBarButtonItems = [exportBarButton]
-            exportBarButton.enabled = true
-        }
+        setExportButtonBasedOnNumOfThoughts()
     }
 
     @IBAction func cancelButtonPressed(sender: AnyObject) {
@@ -556,8 +550,10 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         if(self.returnedSearchResults.count < 2) {
             if(navigationItem.rightBarButtonItems != nil && navigationItem.rightBarButtonItems?.count > 0) {
                 exportBarButton.enabled = false
+                navigationItem.rightBarButtonItems = []
             }
         } else {
+            navigationItem.rightBarButtonItems = [exportBarButton]
             exportBarButton.enabled = true
         }
     }
