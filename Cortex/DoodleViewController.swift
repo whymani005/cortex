@@ -51,12 +51,12 @@ class DoodleViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         drawView.contentMode = .ScaleAspectFit
+        drawView.image = HelperUtils.getImageWithColor(UIColor.whiteColor(), size: drawView.frame.size)
         //undoButton.enabled = false
     }
     
     override func viewWillAppear(animated: Bool) {
         drawView.contentMode = .ScaleAspectFit
-        drawView.image = HelperUtils.getImageWithColor(UIColor.whiteColor(), size: drawView.frame.size)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
