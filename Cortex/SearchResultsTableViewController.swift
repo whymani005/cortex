@@ -29,6 +29,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     var addNoteCustomViewOnDisplay = false
     
     let categoryDataSource = CategoryListDataSource()
+    var thoughtIndexToChangeCategory = -1
     var changeCatCustomView : ChangeCategoryView!
 
     override func viewDidLoad() {
@@ -99,7 +100,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         let cell = tableView.dequeueReusableCellWithIdentifier(InterfaceBuilderInfo.CellIdentifiers.searchResultCell, forIndexPath: indexPath) as! SearchResultTableViewCell
         
         cell.editCategoryButton.tag = indexPath.section
-        cell.editCategoryButton.addTarget(self, action: "changeCategoryButtonPressed:", forControlEvents: .TouchUpInside)
+        cell.editCategoryButton.addTarget(self, action: #selector(SearchResultsTableViewController.changeCategoryButtonPressed(_:)), forControlEvents: .TouchUpInside)
 
         
         cell.dateLabel.text = formatter.stringFromDate(returnedSearchResults[indexPath.section].createdAt!)
@@ -275,7 +276,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     //############################# CHANGE CATEGORY HELPERS #################################
     
     func changeCategoryButtonPressed(sender: UIButton) {
-        let chosenThoughtToEdit = returnedSearchResults[sender.tag]
+        thoughtIndexToChangeCategory = sender.tag //returnedSearchResults[sender.tag]
         displayChangeCategoryXib()
         
     }
@@ -315,6 +316,7 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     }
     
     func dismissChangeCategoryXib() {
+        thoughtIndexToChangeCategory = -1
         self.changeCatCustomView.removeFromSuperview()
         self.holderView.removeFromSuperview()
         tableView.scrollEnabled = true
@@ -326,10 +328,19 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     
     func saveEditCategoryButtonTapped(sender:UIButton!) {
         //get choosen cat
-        if(!StringUtils.isBlank(categoryDataSource.chosenNewCat)) {
-            //edit and save thought
-            //reload data?
-            print("BEFORE SAVING to CD - \(categoryDataSource.chosenNewCat)")
+        if(!StringUtils.isBlank(categoryDataSource.chosenCategoryString)) {
+            let cat = dataRepo.getCDCategoryByCategoryName(categoryDataSource.chosenCategoryString)
+            if(cat != nil) {
+                //edit and save thought
+                if(thoughtIndexToChangeCategory != -1) {
+                    //print("----------BEFORE SAVING to CD - \(categoryDataSource.chosenCategoryString) -- thoughtIndexToChangeCategory: \(thoughtIndexToChangeCategory)")
+                    let thought = self.returnedSearchResults[thoughtIndexToChangeCategory]
+                    thought.categoryString = categoryDataSource.chosenCategoryString
+                    thought.thoughtCategory = cat
+                    self.dataRepo.save()
+                }
+                //reload data??
+            }
         }
         
         dismissChangeCategoryXib()

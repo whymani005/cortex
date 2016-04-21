@@ -12,7 +12,7 @@ import Foundation
 class CategoryListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     let dataRepo = DataRepository()
-    var chosenNewCat = ""
+    var chosenCategoryString = ""
     
     // MARK: - Table view data source
     
@@ -41,15 +41,22 @@ class CategoryListDataSource: NSObject, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //CODE TO BE RUN ON CELL TOUCH
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        //tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        print("didSelectRowAtIndexPath - "+dataRepo.getAllCategories()[indexPath.row].category!)
-        chosenNewCat = dataRepo.getAllCategories()[indexPath.row].category!
-        //dismissCustomView()
+        /*var cell = tableView.dequeueReusableCellWithIdentifier(InterfaceBuilderInfo.CellIdentifiers.changeCategoryCell)
+        cell!.accessoryType = .Checkmark
+        //checked[indexPath.row] = true*/
+        
+        //print("didSelectRowAtIndexPath - "+dataRepo.getAllCategories()[indexPath.row].category!)
+        chosenCategoryString = dataRepo.getAllCategories()[indexPath.row].category!
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 40
     }
 
     
