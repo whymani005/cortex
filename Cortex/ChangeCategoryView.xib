@@ -33,7 +33,7 @@
                     <state key="normal" title="Cancel"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzP-E6-U6W">
-                    <rect key="frame" x="238" y="43" width="34" height="30"/>
+                    <rect key="frame" x="238" y="40" width="34" height="30"/>
                     <state key="normal" title="Save"/>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ydh-jw-ZqW">
@@ -53,7 +53,7 @@
                 <constraint firstAttribute="bottom" secondItem="Ydh-jw-ZqW" secondAttribute="bottom" id="Rdl-F0-AF2"/>
                 <constraint firstItem="acP-aO-PC3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Soi-8N-lzY"/>
                 <constraint firstAttribute="trailing" secondItem="acP-aO-PC3" secondAttribute="trailing" id="TiW-wp-45S"/>
-                <constraint firstItem="IzP-E6-U6W" firstAttribute="top" secondItem="acP-aO-PC3" secondAttribute="bottom" constant="8" id="ZmB-4X-BEh"/>
+                <constraint firstItem="IzP-E6-U6W" firstAttribute="top" secondItem="acP-aO-PC3" secondAttribute="bottom" constant="5" id="ZmB-4X-BEh"/>
                 <constraint firstItem="acP-aO-PC3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="baX-Fr-xHO"/>
                 <constraint firstItem="Ydh-jw-ZqW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cOl-xF-imn"/>
                 <constraint firstAttribute="bottom" secondItem="Ydh-jw-ZqW" secondAttribute="bottom" id="iRI-fi-vas"/>

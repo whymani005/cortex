@@ -41,13 +41,11 @@ class CategoryListDataSource: NSObject, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //CODE TO BE RUN ON CELL TOUCH
-        //tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         /*var cell = tableView.dequeueReusableCellWithIdentifier(InterfaceBuilderInfo.CellIdentifiers.changeCategoryCell)
         cell!.accessoryType = .Checkmark
         //checked[indexPath.row] = true*/
         
-        //print("didSelectRowAtIndexPath - "+dataRepo.getAllCategories()[indexPath.row].category!)
         chosenCategoryString = dataRepo.getAllCategories()[indexPath.row].category!
     }
     

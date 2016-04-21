@@ -327,23 +327,22 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     }
     
     func saveEditCategoryButtonTapped(sender:UIButton!) {
-        //get choosen cat
         if(!StringUtils.isBlank(categoryDataSource.chosenCategoryString)) {
             let cat = dataRepo.getCDCategoryByCategoryName(categoryDataSource.chosenCategoryString)
             if(cat != nil) {
-                //edit and save thought
                 if(thoughtIndexToChangeCategory != -1) {
-                    //print("----------BEFORE SAVING to CD - \(categoryDataSource.chosenCategoryString) -- thoughtIndexToChangeCategory: \(thoughtIndexToChangeCategory)")
+                    //print("--BEFORE SAVING to CD - \(categoryDataSource.chosenCategoryString) -- thoughtIndexToChangeCategory: \(thoughtIndexToChangeCategory)")
                     let thought = self.returnedSearchResults[thoughtIndexToChangeCategory]
                     thought.categoryString = categoryDataSource.chosenCategoryString
                     thought.thoughtCategory = cat
                     self.dataRepo.save()
                 }
-                //reload data??
             }
         }
         
         dismissChangeCategoryXib()
+        //reload data??
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     
