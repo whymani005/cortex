@@ -38,8 +38,6 @@
 		C80969C81CAD97BF00CDD78E /* SearchByKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969BB1CAD97BF00CDD78E /* SearchByKeyword.swift */; };
 		C80969C91CAD97BF00CDD78E /* SearchByKeyword.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80969BC1CAD97BF00CDD78E /* SearchByKeyword.xib */; };
 		C80969CA1CAD97BF00CDD78E /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969BD1CAD97BF00CDD78E /* SearchResultTableViewCell.swift */; };
-		C80969CB1CAD97BF00CDD78E /* ShowQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969BE1CAD97BF00CDD78E /* ShowQuoteView.swift */; };
-		C80969CC1CAD97BF00CDD78E /* ShowQuoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80969BF1CAD97BF00CDD78E /* ShowQuoteView.xib */; };
 		C80969D61CAD9ECA00CDD78E /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969CE1CAD9ECA00CDD78E /* Attachment.swift */; };
 		C80969D71CAD9ECA00CDD78E /* Attachment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969CF1CAD9ECA00CDD78E /* Attachment+CoreDataProperties.swift */; };
 		C80969D81CAD9ECA00CDD78E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80969D01CAD9ECA00CDD78E /* Category.swift */; };
@@ -180,8 +178,6 @@
 		C80969BB1CAD97BF00CDD78E /* SearchByKeyword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchByKeyword.swift; path = CustomUI/SearchByKeyword.swift; sourceTree = "<group>"; };
 		C80969BC1CAD97BF00CDD78E /* SearchByKeyword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchByKeyword.xib; path = CustomUI/SearchByKeyword.xib; sourceTree = "<group>"; };
 		C80969BD1CAD97BF00CDD78E /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultTableViewCell.swift; path = CustomUI/SearchResultTableViewCell.swift; sourceTree = "<group>"; };
-		C80969BE1CAD97BF00CDD78E /* ShowQuoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowQuoteView.swift; path = CustomUI/ShowQuoteView.swift; sourceTree = "<group>"; };
-		C80969BF1CAD97BF00CDD78E /* ShowQuoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowQuoteView.xib; path = CustomUI/ShowQuoteView.xib; sourceTree = "<group>"; };
 		C80969CE1CAD9ECA00CDD78E /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = Entity/Attachment.swift; sourceTree = "<group>"; };
 		C80969CF1CAD9ECA00CDD78E /* Attachment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Attachment+CoreDataProperties.swift"; path = "Entity/Attachment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C80969D01CAD9ECA00CDD78E /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Entity/Category.swift; sourceTree = "<group>"; };
@@ -327,8 +323,6 @@
 				C80969BB1CAD97BF00CDD78E /* SearchByKeyword.swift */,
 				C80969BC1CAD97BF00CDD78E /* SearchByKeyword.xib */,
 				C80969BD1CAD97BF00CDD78E /* SearchResultTableViewCell.swift */,
-				C80969BE1CAD97BF00CDD78E /* ShowQuoteView.swift */,
-				C80969BF1CAD97BF00CDD78E /* ShowQuoteView.xib */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -593,7 +587,6 @@
 			files = (
 				C80969AD1CAD90F100CDD78E /* MonthCollectionCell.xib in Resources */,
 				C80969C31CAD97BF00CDD78E /* AddCategoryAlertView.xib in Resources */,
-				C80969CC1CAD97BF00CDD78E /* ShowQuoteView.xib in Resources */,
 				C80969C51CAD97BF00CDD78E /* AddThoughtNoteView.xib in Resources */,
 				C80969A81CAD90F100CDD78E /* CalendarView.xib in Resources */,
 				C815B8DF1CC8A6A800CA652B /* ChangeCategoryView.xib in Resources */,
@@ -648,7 +641,6 @@
 				C852229B1BC07AEB0041485F /* AttachmentsScrollViewController.swift in Sources */,
 				C80969C61CAD97BF00CDD78E /* DrawSettingsView.swift in Sources */,
 				C80969991CAD8A7200CDD78E /* HelperUtils.swift in Sources */,
-				C80969CB1CAD97BF00CDD78E /* ShowQuoteView.swift in Sources */,
 				C809699A1CAD8A7200CDD78E /* StringUtils.swift in Sources */,
 				C80969AE1CAD90F100CDD78E /* NSDateAdditions.swift in Sources */,
 				C80969A91CAD90F100CDD78E /* Date.swift in Sources */,
