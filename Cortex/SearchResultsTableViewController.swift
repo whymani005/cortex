@@ -14,6 +14,11 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var exportBarButton: UIBarButtonItem!
     
+    var searchResultType = InterfaceBuilderInfo.SearchResultType.UNKNOWN
+    var searchResultDate = NSDate()
+    var searchResultString = ""
+    var searchResultInt = -1
+    
     var returnedSearchResults = [Thought]()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     let dataRepo = DataRepository()
@@ -31,6 +36,9 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     let categoryDataSource = CategoryListDataSource()
     var thoughtIndexToChangeCategory = -1
     var changeCatCustomView : ChangeCategoryView!
+    
+    //var refreshControl: UIRefreshControl!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +54,11 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         
         self.tableView.separatorColor = UIColor.clearColor()
         self.view.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl?.addTarget(self, action: #selector(SearchResultsTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,6 +70,29 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    func refresh(sender:AnyObject) {
+        print("searchResultType: \(searchResultType)")
+        if(searchResultType != InterfaceBuilderInfo.SearchResultType.UNKNOWN) {
+            returnedSearchResults.removeAll(keepCapacity: false)
+            // Code to refresh table view
+            if(searchResultType == InterfaceBuilderInfo.SearchResultType.DATE) {
+                returnedSearchResults = dataRepo.getAllCDThoughtsForDate(searchResultDate)
+            } else if(searchResultType == InterfaceBuilderInfo.SearchResultType.CATEGORY) {
+                returnedSearchResults = dataRepo.getAllCDThoughtsForAttributeValue(searchResultString, attribute: EntityInfo.Thought.categoryString)
+            } else if(searchResultType == InterfaceBuilderInfo.SearchResultType.LOCATION) {
+                returnedSearchResults = dataRepo.getAllCDThoughtsForAttributeValue(searchResultString, attribute: EntityInfo.Thought.location)
+            } else if(searchResultType == InterfaceBuilderInfo.SearchResultType.MOOD) {
+                returnedSearchResults = dataRepo.getAllCDThoughtsForMoodValue(searchResultInt)
+            } else if(searchResultType == InterfaceBuilderInfo.SearchResultType.KEYWORD) {
+                returnedSearchResults = dataRepo.getCDThoughtsByKeywords(searchResultString)
+            }
+            self.tableView.reloadData()
+        }
+        
+        self.refreshControl?.endRefreshing()
+    }
+
     
 
     //######################################### TABLE VIEW METHODS #############################################
@@ -335,8 +371,8 @@ class SearchResultsTableViewController: UITableViewController, UITextViewDelegat
         }
         
         dismissChangeCategoryXib()
-        //reload data??
-        self.navigationController?.popViewControllerAnimated(true)
+        refresh(self) //reload data
+        //self.navigationController?.popViewControllerAnimated(true)
     }
     
     

@@ -33,6 +33,15 @@ struct InterfaceBuilderInfo {
         static let DEFAULT_LOC_NO_WIFI : Double = 9999.99
     }
     
+    struct SearchResultType {
+        static let UNKNOWN = -1
+        static let DATE = 0
+        static let CATEGORY = 1
+        static let LOCATION = 2
+        static let MOOD = 3
+        static let KEYWORD = 4
+    }
+    
     /*struct SyncStatus {
         static let NEEDS_TO_BE_SYNCED = 1
         static let ALREADY_SYNCED = 0

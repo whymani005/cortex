@@ -17,6 +17,11 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
     var locations = [NSDictionary]()
     let dataRepo = DataRepository()
     
+    var searchByType = InterfaceBuilderInfo.SearchResultType.UNKNOWN
+    var searchDateSelected = NSDate()
+    var searchStringSelected = ""
+    var searchIntSelected = -1
+    
     @IBOutlet weak var calendarPlaceholderView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -116,12 +121,16 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
             //print("\(date.year)-\(date.month)-\(date.day) **click**")
             
             searchResults = dataRepo.getAllCDThoughtsForDate(date)
+            searchByType = InterfaceBuilderInfo.SearchResultType.DATE
+            searchDateSelected = date
             actionAfterSearchCriteriaSelection(formatter.stringFromDate(date))
         }
     }
 
     @IBAction func moodCriteriaSelected(sender: AnyObject) {
         searchResults = dataRepo.getAllCDThoughtsForMoodValue(sender.tag)
+        searchByType = InterfaceBuilderInfo.SearchResultType.MOOD
+        searchIntSelected = sender.tag
         actionAfterSearchCriteriaSelection("selected mood")
     }
     
@@ -201,11 +210,15 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
             searchResults.removeAll(keepCapacity: false)
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             searchResults = dataRepo.getAllCDThoughtsForAttributeValue((cell?.textLabel?.text)!, attribute: EntityInfo.Thought.categoryString)
+            searchByType = InterfaceBuilderInfo.SearchResultType.CATEGORY
+            searchStringSelected = (cell?.textLabel?.text)!
             actionAfterSearchCriteriaSelection((cell?.textLabel?.text)!)
         } else if (segmentedControl.selectedSegmentIndex == 2) {
             searchResults.removeAll(keepCapacity: false)
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             searchResults = dataRepo.getAllCDThoughtsForAttributeValue((cell?.textLabel?.text)!, attribute: EntityInfo.Thought.location)
+            searchByType = InterfaceBuilderInfo.SearchResultType.LOCATION
+            searchStringSelected = (cell?.textLabel?.text)!
             actionAfterSearchCriteriaSelection((cell?.textLabel?.text)!)
         }
     }
@@ -214,6 +227,16 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
         if(segue.identifier == InterfaceBuilderInfo.SeguePath.goToSearchResults) {
             let destinationVC = segue.destinationViewController as! SearchResultsTableViewController;
             destinationVC.returnedSearchResults = self.searchResults
+            destinationVC.searchResultType = searchByType
+            if(searchByType == InterfaceBuilderInfo.SearchResultType.DATE) {
+                destinationVC.searchResultDate = searchDateSelected
+            } else if(searchByType == InterfaceBuilderInfo.SearchResultType.CATEGORY ||
+                searchByType == InterfaceBuilderInfo.SearchResultType.LOCATION ||
+                searchByType == InterfaceBuilderInfo.SearchResultType.KEYWORD) {
+                destinationVC.searchResultString = searchStringSelected
+            } else if(searchByType == InterfaceBuilderInfo.SearchResultType.MOOD) {
+                destinationVC.searchResultInt = searchIntSelected
+            }
         }
     }
     
@@ -264,6 +287,8 @@ class HistoryViewController: UIViewController, CalendarViewDelegate, UITableView
             //SEARCH
             searchResults.removeAll(keepCapacity: false)
             searchResults = dataRepo.getCDThoughtsByKeywords(finalKEYWORDS!)
+            searchByType = InterfaceBuilderInfo.SearchResultType.KEYWORD
+            searchStringSelected = finalKEYWORDS!
             actionAfterSearchCriteriaSelection("'"+finalKEYWORDS!+"'")
         }
 
