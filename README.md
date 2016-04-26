@@ -4,7 +4,7 @@
   <img src="/screenshots/CortexLogo.png" width="350"/>
 </p>
 
-**What is Cortex?**
+**What is eCortex?**
 A informative tool to manage and organize thoughts and ideas sparked through out the day into custom categories.
 
 <p align="center">
