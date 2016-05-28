@@ -21,6 +21,8 @@ struct UserInformation {
     
     static let CATEGORY_DELIMITER = "#&&#"
     
+    static let DEFAULT_CATEGORIES = "Home,Work,General"
+    
     //MY CUSTOM CHANGE
     // in Charts - in LineChartRenderer class
 }

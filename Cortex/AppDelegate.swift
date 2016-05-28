@@ -14,6 +14,8 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let dataRepo = DataRepository();
  
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -32,6 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //self.preloadQuotes()
             defaults.setBool(true, forKey: "isPreloaded")
         }*/
+        
+        let existingCats = dataRepo.getAllCategories();
+        if(existingCats.count <= 0) {
+            dataRepo.createDefualtCategories();
+        }
         
         return true
     }

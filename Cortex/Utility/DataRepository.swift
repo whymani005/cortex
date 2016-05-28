@@ -46,6 +46,17 @@ class DataRepository {
         }
     }
     
+    func createDefualtCategories() {
+        let catArr = UserInformation.DEFAULT_CATEGORIES.componentsSeparatedByString(",")
+        if(catArr.count > 0) {
+            for cat in catArr {
+                let guid = NSUUID().UUIDString
+                Category.createNewCategoryInMOC(self.managedObjectContext!, text: cat, guid: guid)
+                save()
+            }
+        }
+    }
+    
     func getAllLocations() -> [NSDictionary] {
         var properties = [AnyObject]()
         properties.append(EntityInfo.Thought.location)
