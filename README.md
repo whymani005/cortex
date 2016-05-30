@@ -1,10 +1,10 @@
-#CORTEX
+<h1><a href="https://itunes.apple.com/us/app/ecortex/id1105026832?mt=8" target="_blank">eCortex</a></h1>
 
 <p align="center">
   <img src="/screenshots/CortexLogo.png" width="350"/>
 </p>
 
-**What is Cortex?**
+**What is eCortex?**
 A informative tool to manage and organize thoughts and ideas sparked through out the day into custom categories.
 
 <p align="center">
